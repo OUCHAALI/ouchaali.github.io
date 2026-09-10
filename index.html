@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ouchaali Soufyane — Delivery AI Software Engineer</title>
+<meta name="description" content="Portfolio of Ouchaali Soufyane, AI &amp; Full-Stack Software Engineer specializing in computer vision and cloud architecture.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14171C;
+    --surface: #1B1F26;
+    --surface-2: #1F242C;
+    --border: #2C323C;
+    --border-soft: #23282F;
+    --text: #E8EAED;
+    --text-dim: #9098A6;
+    --text-faint: #565D69;
+    --accent: #FF8A3D;
+    --accent-soft: rgba(255,138,61,0.12);
+    --teal: #5EEAD4;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --maxw: 1180px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before{
+    content:"";
+    position: fixed; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  a{ color: inherit; text-decoration: none; }
+  img{ max-width:100%; display:block; }
+  section{ position: relative; z-index: 1; }
+  .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+  h1,h2,h3{ font-family: var(--font-display); margin:0; font-weight: 600; letter-spacing: -0.01em; }
+  .mono{ font-family: var(--font-mono); }
+  ::selection{ background: var(--accent-soft); color: var(--accent); }
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position: fixed; top:0; left:0; right:0; z-index: 50;
+    background: rgba(20,23,28,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .nav-inner{
+    max-width: var(--maxw); margin: 0 auto; padding: 18px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{ font-family: var(--font-mono); font-size: 14px; color: var(--text); display:flex; align-items:center; gap:8px; }
+  .brand .dot{ width:6px; height:6px; background: var(--accent); border-radius:50%; box-shadow: 0 0 8px var(--accent); }
+  nav.links{ display:flex; gap:28px; }
+  nav.links a{ font-size: 14px; color: var(--text-dim); transition: color .15s ease; }
+  nav.links a:hover{ color: var(--text); }
+  .nav-cta{
+    font-family: var(--font-mono); font-size: 13px; color: var(--bg);
+    background: var(--accent); padding: 8px 14px; border-radius: 2px;
+    transition: opacity .15s ease;
+  }
+  .nav-cta:hover{ opacity: .85; }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--border); color: var(--text); width:36px; height:36px; border-radius:2px; cursor:pointer; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height: 100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding-top: 90px; padding-bottom: 60px;
+    overflow: hidden;
+  }
+  .hero-frame{
+    position: relative;
+    padding: 56px clamp(20px, 5vw, 64px);
+    border: 1px solid var(--border);
+  }
+  .corner{ position:absolute; width:16px; height:16px; }
+  .corner::before, .corner::after{ content:""; position:absolute; background: var(--accent); }
+  .corner.tl{ top:-1px; left:-1px; } .corner.tr{ top:-1px; right:-1px; } .corner.bl{ bottom:-1px; left:-1px; } .corner.br{ bottom:-1px; right:-1px; }
+  .corner::before{ width:100%; height:2px; }
+  .corner::after{ width:2px; height:100%; }
+  .corner.tl::before, .corner.tl::after{ top:0; left:0; }
+  .corner.tr::before{ top:0; right:0; } .corner.tr::after{ top:0; right:0; }
+  .corner.bl::before{ bottom:0; left:0; } .corner.bl::after{ bottom:0; left:0; }
+  .corner.br::before{ bottom:0; right:0; } .corner.br::after{ bottom:0; right:0; }
+
+  .scan-line{
+    position:absolute; left:0; right:0; top:0; height:2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: .9;
+    animation: scan 2.4s ease-in-out 0.3s 1 both;
+  }
+  @keyframes scan{
+    0%{ top:0; opacity:0; }
+    8%{ opacity:1; }
+    92%{ opacity:1; }
+    100%{ top:100%; opacity:0; }
+  }
+
+  .readout{
+    font-family: var(--font-mono); font-size: 12px; color: var(--text-faint);
+    display:flex; flex-wrap: wrap; gap: 24px; margin-bottom: 28px;
+    opacity:0; animation: fadeIn .6s ease 1.8s forwards;
+  }
+  .readout span b{ color: var(--text-dim); font-weight: 500; }
+  @keyframes fadeIn{ to{ opacity:1; } }
+
+  .hero-role{
+    font-family: var(--font-mono); font-size: 13px; color: var(--accent);
+    margin-bottom: 18px;
+    opacity:0; animation: fadeIn .6s ease .9s forwards;
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1.02; color: var(--text);
+    opacity:0; animation: fadeIn .7s ease 1.05s forwards;
+  }
+  .hero p.lede{
+    max-width: 620px; margin-top: 24px; color: var(--text-dim); font-size: 17px;
+    opacity:0; animation: fadeIn .7s ease 1.5s forwards;
+  }
+  .hero-actions{
+    display:flex; flex-wrap:wrap; gap:14px; margin-top: 34px;
+    opacity:0; animation: fadeIn .7s ease 2s forwards;
+  }
+  .btn{
+    font-family: var(--font-mono); font-size: 13px; padding: 12px 20px; border-radius: 2px;
+    border: 1px solid var(--border); transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .btn.primary{ background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .btn.primary:hover{ opacity: .88; }
+  .btn.ghost{ color: var(--text-dim); }
+  .btn.ghost:hover{ color: var(--text); border-color: var(--text-faint); }
+
+  @media (prefers-reduced-motion: reduce){
+    .scan-line, .readout, .hero-role, .hero h1, .hero p.lede, .hero-actions{ animation: none !important; opacity: 1 !important; }
+  }
+
+  /* ---------- SECTION HEADS ---------- */
+  .section{ padding: 110px 0; border-top: 1px solid var(--border-soft); }
+  .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap: 24px; margin-bottom: 52px; flex-wrap: wrap; }
+  .section-tag{ font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
+  .section-head h2{ font-size: clamp(1.7rem, 3vw, 2.3rem); }
+  .section-note{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); max-width: 260px; text-align:right; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns: 1.3fr 1fr; gap: 64px; }
+  .about-grid p{ color: var(--text-dim); font-size: 17px; margin: 0 0 18px; max-width: 62ch; }
+  .about-grid p strong{ color: var(--text); font-weight: 500; }
+  .stat-list{ display:flex; flex-direction:column; gap: 0; border-top: 1px solid var(--border-soft); }
+  .stat-row{ display:flex; justify-content:space-between; padding: 18px 0; border-bottom: 1px solid var(--border-soft); }
+  .stat-row .k{ color: var(--text-dim); font-size: 14px; }
+  .stat-row .v{ font-family: var(--font-mono); color: var(--text); font-size: 14px; }
+
+  /* ---------- EXPERIENCE (log) ---------- */
+  .log{ border-top: 1px solid var(--border-soft); }
+  .log-entry{ display:grid; grid-template-columns: 150px 1fr; gap: 40px; padding: 32px 0; border-bottom: 1px solid var(--border-soft); }
+  .log-time{ font-family: var(--font-mono); font-size: 13px; color: var(--text-faint); padding-top: 4px; }
+  .log-time .status{ display:inline-block; margin-top:10px; font-size:11px; color: var(--accent); border:1px solid var(--accent); padding:2px 8px; border-radius: 2px; }
+  .log-body h3{ font-size: 20px; color: var(--text); margin-bottom:2px; }
+  .log-role{ font-family: var(--font-mono); font-size: 13px; color: var(--text-dim); margin-bottom: 16px; display:block; }
+  .log-body ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .log-body li{ color: var(--text-dim); font-size: 15px; padding-left: 18px; position:relative; }
+  .log-body li::before{ content:"›"; position:absolute; left:0; color: var(--accent); }
+  .log-body li strong{ color: var(--text); font-weight:500; }
+
+  @media (max-width: 720px){
+    .log-entry{ grid-template-columns: 1fr; gap: 10px; }
+    .about-grid{ grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .grid-projects{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .project{
+    position: relative; border: 1px solid var(--border); padding: 30px;
+    transition: border-color .18s ease, background .18s ease;
+  }
+  .project:hover{ border-color: var(--accent); background: var(--surface); }
+  .project .corner{ opacity: 0; transition: opacity .18s ease; }
+  .project:hover .corner{ opacity: 1; }
+  .project-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 18px; }
+  .confidence{ font-family: var(--font-mono); font-size: 11px; color: var(--teal); border: 1px solid rgba(94,234,212,0.35); padding: 3px 8px; border-radius: 2px; white-space:nowrap; }
+  .project h3{ font-size: 19px; margin-bottom: 10px; }
+  .project p{ color: var(--text-dim); font-size: 14.5px; margin: 0 0 18px; }
+  .tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{ font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); border: 1px solid var(--border); padding: 4px 9px; border-radius: 2px; }
+
+  @media (max-width: 780px){ .grid-projects{ grid-template-columns: 1fr; } }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-soft); border: 1px solid var(--border-soft); }
+  .skill-cluster{ background: var(--bg); padding: 28px; }
+  .skill-cluster h3{ font-family: var(--font-mono); font-size: 12px; color: var(--accent); font-weight:500; margin-bottom: 18px; }
+  .skill-cluster ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap: 12px; }
+  .skill-cluster li{ display:flex; justify-content:space-between; font-size: 14.5px; color: var(--text-dim); border-bottom: 1px dashed var(--border-soft); padding-bottom: 12px; }
+  .skill-cluster li:last-child{ border-bottom:none; padding-bottom:0; }
+  .skill-cluster li span.name{ color: var(--text); }
+
+  @media (max-width: 900px){ .skills-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------- EDUCATION / LANG ---------- */
+  .edu-lang{ display:grid; grid-template-columns: 1.4fr 1fr; gap: 64px; }
+  .edu-item{ padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .edu-item:first-child{ padding-top: 0; }
+  .edu-item .deg{ font-size: 16px; color: var(--text); margin-bottom: 4px; }
+  .edu-item .school{ font-family: var(--font-mono); font-size: 12.5px; color: var(--text-dim); display:flex; justify-content:space-between; }
+  .lang-item{ display:flex; justify-content:space-between; align-items:center; padding: 14px 0; border-bottom: 1px solid var(--border-soft); }
+  .lang-item:last-child{ border-bottom: none; }
+  .lang-name{ font-size: 15px; color: var(--text); }
+  .lang-level{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
+  @media (max-width: 780px){ .edu-lang{ grid-template-columns: 1fr; } }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact{ text-align: left; }
+  .contact h2{ font-size: clamp(2rem, 5vw, 3.4rem); max-width: 14ch; }
+  .contact-row{ display:flex; flex-wrap:wrap; gap: 40px; margin-top: 44px; }
+  .contact-item .k{ font-family: var(--font-mono); font-size: 11px; color: var(--text-faint); margin-bottom: 6px; }
+  .contact-item .v{ font-size: 16px; color: var(--text); border-bottom: 1px solid transparent; }
+  .contact-item a.v:hover{ border-color: var(--accent); color: var(--accent); }
+
+  footer{ border-top: 1px solid var(--border-soft); padding: 28px 0; }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
+
+  @media (max-width: 640px){
+    nav.links, .nav-cta{ display:none; }
+    .wrap{ padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="dot"></span>OUCHAALI // SOUFYANE</a>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+    </nav>
+    <a class="nav-cta" href="mailto:ouchaali.soufyane@gmail.com">Get in touch</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-frame">
+        <div class="scan-line"></div>
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+
+        <div class="hero-role">Delivery AI Software Engineer — Full-Stack &amp; Cloud</div>
+        <h1>Ouchaali<br>Soufyane</h1>
+        <p class="lede">I build and ship AI-driven systems end to end — from computer-vision models running on industrial sites, to the cloud infrastructure and full-stack apps that put them in front of real users.</p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#work">View selected work</a>
+          <a class="btn ghost" href="ouchaali soufyane.pdf" download>Download résumé</a>
+          <a class="btn ghost" href="mailto:ouchaali.soufyane@gmail.com">Contact</a>
+        </div>
+
+        <div class="readout">
+          <span><b>Location</b> Casablanca, MA — 33.57°N 7.59°W</span>
+          <span><b>Status</b> Open to opportunities</span>
+          <span><b>Focus</b> Computer vision · Cloud · Full-stack</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-tag">01 — About</div>
+          <h2>Systems, not just models</h2>
+        </div>
+        <div class="section-note">A Master's in AI &amp; Data Science, applied across five roles spanning industrial vision, IoT, and cloud delivery.</div>
+      </div>
+
+      <div class="about-grid">
+        <div>
+          <p>I'm a software engineer based in Casablanca, currently building <strong>high-availability cloud services</strong> at DXC Technology. My work sits at the join between machine learning and production engineering: I've shipped a <strong>real-time computer-vision safety system</strong> for industrial sites, built IoT data pipelines that feed live monitoring dashboards, and delivered full-stack apps on Kubernetes with automated CI/CD.</p>
+          <p>What I care about is the part most demos skip — getting a model or a service to run reliably, securely, and fast, in front of real operators and real traffic. I work comfortably across the stack: Python and FastAPI on the backend, React on the front end, Azure and Terraform underneath it all.</p>
+        </div>
+        <div class="stat-list">
+          <div class="stat-row"><span class="k">Years shipping production code</span><span class="v">2022 — present</span></div>
+          <div class="stat-row"><span class="k">Uptime delivered, DXC internal services</span><span class="v">99.9%</span></div>
+          <div class="stat-row"><span class="k">Vision model deployed in production</span><span class="v">YOLOv8</span></div>
+          <div class="stat-row"><span class="k">Primary cloud</span><span class="v">Microsoft Azure</span></div>
+          <div class="stat-row"><span class="k">Languages spoken</span><span class="v">AR · FR · EN</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-tag">02 — Experience</div>
+          <h2>Where I've built</h2>
+        </div>
+        <div class="section-note">Five roles, one throughline: taking AI and cloud systems from prototype to production.</div>
+      </div>
+
+      <div class="log">
+        <div class="log-entry">
+          <div class="log-time">Feb 2026 — Aug 2026<span class="status">7 mos</span></div>
+          <div class="log-body">
+            <h3>Cloud &amp; System Administrator</h3>
+            <span class="log-role">DXC Technology · Rabat, hybrid · Contract</span>
+            <ul>
+              <li><strong>Platform:</strong> worked extensively with the Nutanix Cloud Platform (NCP-MCI Professional track), across core infrastructure and enterprise features.</li>
+              <li><strong>Cluster deployment:</strong> designed, implemented, and optimized Nutanix clusters for scalable, resilient infrastructure.</li>
+              <li><strong>Storage:</strong> managed storage pools, containers, and volumes to hold performance and availability.</li>
+              <li><strong>RBAC &amp; security:</strong> configured role-based access control and governance policies to enforce compliance in multi-tenant environments.</li>
+              <li><strong>Disaster recovery:</strong> implemented DR strategies, failover planning, and availability-zone configuration for business continuity.</li>
+              <li><strong>Networking:</strong> configured AHV networking, managed virtual machines, and integrated with external hypervisors.</li>
+              <li><strong>Data protection:</strong> used Nutanix's native tools for snapshots, replication, and backup on critical workloads.</li>
+              <li><strong>Monitoring:</strong> ran proactive monitoring, performance tuning, and issue resolution through Prism Central.</li>
+              <li><strong>Automation:</strong> applied governance frameworks and automation workflows to cut operational overhead.</li>
+              <li><strong>Hybrid cloud:</strong> explored Nutanix hybrid deployments to enable workload mobility and scalability.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-time">Oct 2025 — Jan 2026<span class="status">4 mos</span></div>
+          <div class="log-body">
+            <h3>Cloud Computing — Azure Apprenticeship</h3>
+            <span class="log-role">Jobintech · Univ. Internationale Averroès, Casablanca · On-site</span>
+            <ul>
+              <li><strong>Program:</strong> completed an intensive Cloud &amp; Azure bootcamp covering cloud fundamentals, data, AI, DevOps, and Microsoft ecosystem administration, mixing theory with hands-on labs.</li>
+              <li><strong>Infrastructure:</strong> Windows Server &amp; virtualization — Active Directory, Group Policy, monitoring tools.</li>
+              <li><strong>Azure admin:</strong> virtual machines, storage, networking, identity, and compliance (AZ-104 track).</li>
+              <li><strong>Microsoft 365:</strong> licensing, user and group management, security administration.</li>
+              <li><strong>Data &amp; AI:</strong> relational/non-relational data and Azure analytics (DP-900); ML basics, computer vision, and NLP workloads on Azure (AI-900).</li>
+              <li><strong>Security:</strong> identity and access management, Microsoft security solutions (SC-900).</li>
+              <li><strong>DevOps:</strong> CI/CD pipelines, infrastructure automation, monitoring, team collaboration.</li>
+              <li><strong>Applied:</strong> solved real-world cloud problems in team-based Azure challenges, while preparing for AZ-900, AZ-104, DP-900, AI-900, and SC-900 certifications.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-time">Feb 2025 — Jul 2025<span class="status">6 mos</span></div>
+          <div class="log-body">
+            <h3>Graduation Internship</h3>
+            <span class="log-role">IITS — International IT Services · Prefecture of Casablanca · On-site</span>
+            <ul>
+              <li><strong>Web platform:</strong> designed and built a responsive landing page with full multilingual support (French / English / Arabic).</li>
+              <li><strong>Payments:</strong> integrated a secure payment module using the CMI API.</li>
+              <li><strong>UI:</strong> contributed to a user-friendly interface for real-time data display.</li>
+              <li><strong>IoT architecture:</strong> installed and configured industrial IoT equipment across two communication paths — Modbus to LoRaWAN via The Things Network, and Modbus to TCP/IP with direct database storage.</li>
+              <li><strong>Devices:</strong> deployed an Acrel ADW300 energy meter and a Dragino weather station.</li>
+              <li><strong>Data pipeline:</strong> wrote Python scripts for data collection, processing, and centralization from both architectures.</li>
+              <li><strong>Visualization:</strong> enabled real-time visualization with SynergyIoT, monitored metrics with Prometheus, and built interactive Grafana dashboards.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-time">Jul 2024 — Sep 2024<span class="status">3 mos</span></div>
+          <div class="log-body">
+            <h3>Machine Learning Intern</h3>
+            <span class="log-role">OCP Group · Laâyoune, hybrid</span>
+            <ul>
+              <li><strong>Goal:</strong> built a machine-learning system to detect workers missing helmets or reflective jackets on video, to automate safety supervision on construction sites.</li>
+              <li><strong>Data:</strong> sourced a safety helmet/jacket dataset from Kaggle and hand-annotated images in YOLO format (class + bounding box).</li>
+              <li><strong>Pipeline:</strong> structured the dataset into training, validation, and test folders, then trained a YOLOv8 model on Google Colab.</li>
+              <li><strong>Tracking:</strong> integrated ByteTrack for person tracking, with custom detection logic drawing green or red boxes based on compliance.</li>
+              <li><strong>Alerting:</strong> built an alert system that captured violation screenshots and emailed them to the site monitor in real time.</li>
+              <li><strong>Tuning:</strong> validated accuracy across multiple videos and eliminated duplicate alerts from re-tracking the same person.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-time">Apr 2022 — Jun 2022<span class="status">3 mos</span></div>
+          <div class="log-body">
+            <h3>Information Technology Business Analyst</h3>
+            <span class="log-role">ONEE — Branche Eau · Rabat</span>
+            <ul>
+              <li><strong>System:</strong> built a forecasting and reporting system for technical ratios and expense/revenue line items for ONEE Rabat's Branche Eau.</li>
+              <li><strong>Extraction:</strong> pulled source data directly from SAP.</li>
+              <li><strong>Modeling:</strong> implemented the forecasting calculations in Python using Jupyter notebooks.</li>
+              <li><strong>Reporting:</strong> delivered the results as Power BI reports for stakeholder review.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS / WORK -->
+  <section class="section" id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-tag">03 — Selected work</div>
+          <h2>Systems I've shipped</h2>
+        </div>
+        <div class="section-note">Drawn from my professional roles — each one taken from prototype to running in production.</div>
+      </div>
+
+      <div class="grid-projects">
+        <div class="project">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="project-top">
+            <h3>Industrial safety vision system</h3>
+            <span class="confidence">OCP GROUP</span>
+          </div>
+          <p>Real-time computer-vision system built on YOLOv8 to detect and track safety events on industrial sites. Optimized the inference pipeline to keep latency low enough for live monitoring, and owned data quality from image curation through integration testing.</p>
+          <div class="tags"><span class="tag">YOLOv8</span><span class="tag">Python</span><span class="tag">Computer vision</span><span class="tag">MLOps</span></div>
+        </div>
+
+        <div class="project">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="project-top">
+            <h3>Cloud-native internal tools platform</h3>
+            <span class="confidence">DXC TECHNOLOGY</span>
+          </div>
+          <p>Backend services and internal tooling engineered for high availability, holding 99.9% uptime. Owned the full software lifecycle — requirements, build, containerized deployment — and designed for resilience under complex business logic.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Docker</span><span class="tag">Azure</span><span class="tag">CI/CD</span></div>
+        </div>
+
+        <div class="project">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="project-top">
+            <h3>Kubernetes-orchestrated web platform</h3>
+            <span class="confidence">JOBINTECH</span>
+          </div>
+          <p>Full-stack web applications built with Python and React, deployed as modular microservices on AKS with Docker. Set up CI/CD pipelines with automated unit testing, and secured deployments with Entra ID role-based access control.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">Kubernetes</span><span class="tag">Azure DevOps</span><span class="tag">RBAC</span></div>
+        </div>
+
+        <div class="project">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="project-top">
+            <h3>IoT real-time monitoring platform</h3>
+            <span class="confidence">INTL. IT SERVICES</span>
+          </div>
+          <p>Backend Python services for real-time acquisition and processing of data from industrial IoT sensors, feeding live Grafana dashboards built on Prometheus metrics for technical stakeholders monitoring plant conditions.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">IoT</span></div>
+        </div>
+
+        <div class="project">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="project-top">
+            <h3>Predictive maintenance BI suite</h3>
+            <span class="confidence">ONEE BRANCHE EAU</span>
+          </div>
+          <p>Automated ETL workflows moving SAP ERP data into SQL Server for predictive analytics, paired with interactive Power BI dashboards that translated infrastructure data into long-term maintenance forecasts.</p>
+          <div class="tags"><span class="tag">SQL Server</span><span class="tag">ETL</span><span class="tag">Power BI</span><span class="tag">Forecasting</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-tag">04 — Stack</div>
+          <h2>Tools I reach for</h2>
+        </div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-cluster">
+          <h3>Backend &amp; AI</h3>
+          <ul>
+            <li><span class="name">Python</span> FastAPI, Flask</li>
+            <li><span class="name">Node.js</span> REST APIs</li>
+            <li><span class="name">Testing</span> PyTest, Jest</li>
+            <li><span class="name">Practice</span> Clean code, OOP</li>
+          </ul>
+        </div>
+        <div class="skill-cluster">
+          <h3>Frontend</h3>
+          <ul>
+            <li><span class="name">React</span> TypeScript</li>
+            <li><span class="name">Core</span> HTML5, CSS3, JS</li>
+            <li><span class="name">UI kits</span> Tailwind, Material UI, Bootstrap</li>
+            <li><span class="name">Data viz</span> D3.js</li>
+          </ul>
+        </div>
+        <div class="skill-cluster">
+          <h3>Cloud &amp; DevOps</h3>
+          <ul>
+            <li><span class="name">Azure</span> AKS, Functions</li>
+            <li><span class="name">Infra</span> Terraform, AWS</li>
+            <li><span class="name">Containers</span> Docker, Kubernetes</li>
+            <li><span class="name">CI/CD</span> Azure DevOps</li>
+          </ul>
+        </div>
+        <div class="skill-cluster">
+          <h3>Data</h3>
+          <ul>
+            <li><span class="name">SQL</span> Postgres, SQL Server, MySQL</li>
+            <li><span class="name">NoSQL</span> MongoDB</li>
+            <li><span class="name">BI</span> Power BI</li>
+            <li><span class="name">Monitoring</span> Prometheus, Grafana</li>
+          </ul>
+        </div>
+        <div class="skill-cluster">
+          <h3>Vision &amp; ML</h3>
+          <ul>
+            <li><span class="name">Detection</span> YOLOv8</li>
+            <li><span class="name">Pipelines</span> Image curation, integration testing</li>
+            <li><span class="name">Focus</span> Real-time inference, low-latency serving</li>
+          </ul>
+        </div>
+        <div class="skill-cluster">
+          <h3>Core &amp; delivery</h3>
+          <ul>
+            <li><span class="name">Systems</span> Linux, shell scripting</li>
+            <li><span class="name">Architecture</span> Microservices, solution design</li>
+            <li><span class="name">Version control</span> Git</li>
+            <li><span class="name">Way of working</span> Agile delivery</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION & LANGUAGES -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-tag">05 — Education</div>
+          <h2>Background</h2>
+        </div>
+      </div>
+
+      <div class="edu-lang">
+        <div>
+          <div class="edu-item">
+            <div class="deg">State Engineer's Degree, Computer Science — Data &amp; AI</div>
+            <div class="school"><span>École Polytechnique d'Agadir</span><span>2023 — 2025</span></div>
+          </div>
+          <div class="edu-item">
+            <div class="deg">License in Business Intelligence &amp; Statistics</div>
+            <div class="school"><span>École Supérieure de Technologies, Guelmim</span><span>2021 — 2022</span></div>
+          </div>
+          <div class="edu-item">
+            <div class="deg">BTS, Information Systems Development</div>
+            <div class="school"><span>Lissane Eddine Ibn Khatib, Laâyoune</span><span>2019 — 2021</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">Professional — C1</span></div>
+          <div class="lang-item"><span class="lang-name">French</span><span class="lang-level">Fluent</span></div>
+          <div class="lang-item"><span class="lang-name">Arabic</span><span class="lang-level">Native</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="wrap">
+      <div class="section-tag">06 — Contact</div>
+      <h2>Let's build something that ships.</h2>
+      <div class="contact-row">
+        <div class="contact-item">
+          <div class="k">Email</div>
+          <a class="v" href="mailto:ouchaali.soufyane@gmail.com">ouchaali.soufyane@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <div class="k">Phone</div>
+          <a class="v" href="tel:+212633174487">+212 633-174487</a>
+        </div>
+        <div class="contact-item">
+          <div class="k">LinkedIn</div>
+          <a class="v" href="https://linkedin.com" target="_blank" rel="noopener">View profile</a>
+        </div>
+        <div class="contact-item">
+          <div class="k">Based in</div>
+          <span class="v">Casablanca, Morocco</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 Ouchaali Soufyane</span>
+    <span>Built with HTML, CSS &amp; a bit of computer vision</span>
+  </div>
+</footer>
+
+</body>
+</html>
