@@ -79,7 +79,6 @@
     transition: opacity .15s ease;
   }
   .nav-cta:hover{ opacity: .85; }
-  .nav-toggle{ display:none; background:none; border:1px solid var(--border); color: var(--text); width:36px; height:36px; border-radius:2px; cursor:pointer; }
 
   /* ---------- HERO ---------- */
   .hero{
@@ -159,28 +158,32 @@
   .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap: 24px; margin-bottom: 52px; flex-wrap: wrap; }
   .section-tag{ font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
   .section-head h2{ font-size: clamp(1.7rem, 3vw, 2.3rem); }
-  .section-note{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); max-width: 260px; text-align:right; }
+  .section-note{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); max-width: 280px; text-align:right; }
 
   /* ---------- ABOUT ---------- */
   .about-grid{ display:grid; grid-template-columns: 1.3fr 1fr; gap: 64px; }
   .about-grid p{ color: var(--text-dim); font-size: 17px; margin: 0 0 18px; max-width: 62ch; }
   .about-grid p strong{ color: var(--text); font-weight: 500; }
   .stat-list{ display:flex; flex-direction:column; gap: 0; border-top: 1px solid var(--border-soft); }
-  .stat-row{ display:flex; justify-content:space-between; padding: 18px 0; border-bottom: 1px solid var(--border-soft); }
+  .stat-row{ display:flex; justify-content:space-between; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border-soft); }
   .stat-row .k{ color: var(--text-dim); font-size: 14px; }
-  .stat-row .v{ font-family: var(--font-mono); color: var(--text); font-size: 14px; }
+  .stat-row .v{ font-family: var(--font-mono); color: var(--text); font-size: 13px; text-align:right; }
 
   /* ---------- EXPERIENCE (log) ---------- */
   .log{ border-top: 1px solid var(--border-soft); }
-  .log-entry{ display:grid; grid-template-columns: 150px 1fr; gap: 40px; padding: 32px 0; border-bottom: 1px solid var(--border-soft); }
+  .log-entry{ display:grid; grid-template-columns: 150px 1fr; gap: 40px; padding: 40px 0; border-bottom: 1px solid var(--border-soft); }
   .log-time{ font-family: var(--font-mono); font-size: 13px; color: var(--text-faint); padding-top: 4px; }
-  .log-time .status{ display:inline-block; margin-top:10px; font-size:11px; color: var(--accent); border:1px solid var(--accent); padding:2px 8px; border-radius: 2px; }
+  .log-time .tag-type{ display:inline-block; margin-top:10px; font-size:11px; color: var(--text-dim); border:1px solid var(--border); padding:2px 8px; border-radius: 2px; }
   .log-body h3{ font-size: 20px; color: var(--text); margin-bottom:2px; }
-  .log-role{ font-family: var(--font-mono); font-size: 13px; color: var(--text-dim); margin-bottom: 16px; display:block; }
-  .log-body ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .log-role{ font-family: var(--font-mono); font-size: 13px; color: var(--text-dim); margin-bottom: 6px; display:block; }
+  .log-summary{ color: var(--text-dim); font-size: 15px; margin: 10px 0 18px; max-width: 68ch; }
+  .log-sub{ font-family: var(--font-mono); font-size: 11px; color: var(--accent); margin: 18px 0 8px; text-transform: none; }
+  .log-body ul{ margin:0 0 6px; padding:0; list-style:none; display:flex; flex-direction:column; gap:10px; }
   .log-body li{ color: var(--text-dim); font-size: 15px; padding-left: 18px; position:relative; }
   .log-body li::before{ content:"›"; position:absolute; left:0; color: var(--accent); }
   .log-body li strong{ color: var(--text); font-weight:500; }
+  .skill-pills{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 20px; }
+  .skill-pill{ font-family: var(--font-mono); font-size: 11px; color: var(--text-faint); border: 1px dashed var(--border); padding: 4px 9px; border-radius: 2px; }
 
   @media (max-width: 720px){
     .log-entry{ grid-template-columns: 1fr; gap: 10px; }
@@ -196,7 +199,7 @@
   .project:hover{ border-color: var(--accent); background: var(--surface); }
   .project .corner{ opacity: 0; transition: opacity .18s ease; }
   .project:hover .corner{ opacity: 1; }
-  .project-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 18px; }
+  .project-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 18px; gap: 10px; }
   .confidence{ font-family: var(--font-mono); font-size: 11px; color: var(--teal); border: 1px solid rgba(94,234,212,0.35); padding: 3px 8px; border-radius: 2px; white-space:nowrap; }
   .project h3{ font-size: 19px; margin-bottom: 10px; }
   .project p{ color: var(--text-dim); font-size: 14.5px; margin: 0 0 18px; }
@@ -210,11 +213,17 @@
   .skill-cluster{ background: var(--bg); padding: 28px; }
   .skill-cluster h3{ font-family: var(--font-mono); font-size: 12px; color: var(--accent); font-weight:500; margin-bottom: 18px; }
   .skill-cluster ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap: 12px; }
-  .skill-cluster li{ display:flex; justify-content:space-between; font-size: 14.5px; color: var(--text-dim); border-bottom: 1px dashed var(--border-soft); padding-bottom: 12px; }
+  .skill-cluster li{ display:flex; justify-content:space-between; gap: 10px; font-size: 14px; color: var(--text-dim); border-bottom: 1px dashed var(--border-soft); padding-bottom: 12px; }
   .skill-cluster li:last-child{ border-bottom:none; padding-bottom:0; }
-  .skill-cluster li span.name{ color: var(--text); }
+  .skill-cluster li span.name{ color: var(--text); white-space: nowrap; }
 
   @media (max-width: 900px){ .skills-grid{ grid-template-columns: 1fr; } }
+
+  /* ---------- CERTIFICATIONS ---------- */
+  .cert-row{ display:flex; flex-wrap: wrap; gap: 14px; }
+  .cert{ border: 1px solid var(--border); padding: 14px 18px; flex: 1 1 150px; }
+  .cert .id{ font-family: var(--font-mono); font-size: 13px; color: var(--accent); margin-bottom: 4px; }
+  .cert .label{ font-size: 13px; color: var(--text-dim); }
 
   /* ---------- EDUCATION / LANG ---------- */
   .edu-lang{ display:grid; grid-template-columns: 1.4fr 1fr; gap: 64px; }
@@ -271,18 +280,18 @@
 
         <div class="hero-role">Delivery AI Software Engineer — Full-Stack &amp; Cloud</div>
         <h1>Ouchaali<br>Soufyane</h1>
-        <p class="lede">I build and ship AI-driven systems end to end — from computer-vision models running on industrial sites, to the cloud infrastructure and full-stack apps that put them in front of real users.</p>
+        <p class="lede">I build and ship AI-driven systems end to end — from computer-vision models running on industrial sites, to the cloud infrastructure, IoT networks, and full-stack apps that put them in front of real users.</p>
 
         <div class="hero-actions">
           <a class="btn primary" href="#work">View selected work</a>
-          <a class="btn ghost" href="ouchaali soufyane.pdf" download>Download résumé</a>
+          <a class="btn ghost" href="Ouchaali_Soufyane_Resume.pdf" download>Download résumé</a>
           <a class="btn ghost" href="mailto:ouchaali.soufyane@gmail.com">Contact</a>
         </div>
 
         <div class="readout">
           <span><b>Location</b> Casablanca, MA — 33.57°N 7.59°W</span>
           <span><b>Status</b> Open to opportunities</span>
-          <span><b>Focus</b> Computer vision · Cloud · Full-stack</span>
+          <span><b>Focus</b> Computer vision · Cloud infra · Full-stack</span>
         </div>
       </div>
     </div>
@@ -296,19 +305,20 @@
           <div class="section-tag">01 — About</div>
           <h2>Systems, not just models</h2>
         </div>
-        <div class="section-note">A Master's in AI &amp; Data Science, applied across five roles spanning industrial vision, IoT, and cloud delivery.</div>
+        <div class="section-note">A Master's in AI &amp; Data Science, applied across five roles spanning industrial vision, IoT, cloud infrastructure, and BI.</div>
       </div>
 
       <div class="about-grid">
         <div>
-          <p>I'm a software engineer based in Casablanca, currently building <strong>high-availability cloud services</strong> at DXC Technology. My work sits at the join between machine learning and production engineering: I've shipped a <strong>real-time computer-vision safety system</strong> for industrial sites, built IoT data pipelines that feed live monitoring dashboards, and delivered full-stack apps on Kubernetes with automated CI/CD.</p>
-          <p>What I care about is the part most demos skip — getting a model or a service to run reliably, securely, and fast, in front of real operators and real traffic. I work comfortably across the stack: Python and FastAPI on the backend, React on the front end, Azure and Terraform underneath it all.</p>
+          <p>I'm a software engineer based in Casablanca, currently working with the <strong>Nutanix Cloud Platform</strong> as a Cloud &amp; System Administrator at DXC Technology. My work sits at the join between machine learning and production infrastructure: I've shipped a <strong>real-time worker-safety detection system</strong> combining YOLOv8 and ByteTrack, deployed <strong>industrial IoT networks</strong> over LoRaWAN and Modbus, and built the SAP-to-Power-BI pipelines an operations team relies on for forecasting.</p>
+          <p>What I care about is the part most demos skip — getting a model, a sensor network, or a cluster to run reliably, securely, and fast, in front of real operators. I work comfortably from the hardware layer (IoT gateways, Nutanix clusters) up through the data layer (Python, SQL) to the interface people actually touch (React, Power BI, Grafana).</p>
         </div>
         <div class="stat-list">
-          <div class="stat-row"><span class="k">Years shipping production code</span><span class="v">2022 — present</span></div>
-          <div class="stat-row"><span class="k">Uptime delivered, DXC internal services</span><span class="v">99.9%</span></div>
-          <div class="stat-row"><span class="k">Vision model deployed in production</span><span class="v">YOLOv8</span></div>
-          <div class="stat-row"><span class="k">Primary cloud</span><span class="v">Microsoft Azure</span></div>
+          <div class="stat-row"><span class="k">Years shipping production systems</span><span class="v">2022 — present</span></div>
+          <div class="stat-row"><span class="k">Current focus</span><span class="v">Nutanix hybrid cloud</span></div>
+          <div class="stat-row"><span class="k">Vision system in production</span><span class="v">YOLOv8 + ByteTrack</span></div>
+          <div class="stat-row"><span class="k">IoT protocols deployed</span><span class="v">Modbus · LoRaWAN · TCP/IP</span></div>
+          <div class="stat-row"><span class="k">Certifications in progress</span><span class="v">AZ-900 · AZ-104 · DP-900 · AI-900 · SC-900</span></div>
           <div class="stat-row"><span class="k">Languages spoken</span><span class="v">AR · FR · EN</span></div>
         </div>
       </div>
@@ -323,94 +333,116 @@
           <div class="section-tag">02 — Experience</div>
           <h2>Where I've built</h2>
         </div>
-        <div class="section-note">Five roles, one throughline: taking AI and cloud systems from prototype to production.</div>
+        <div class="section-note">Five roles, one throughline: taking AI, cloud, and IoT systems from prototype to production.</div>
       </div>
 
       <div class="log">
+
+        <!-- DXC -->
         <div class="log-entry">
-          <div class="log-time">Feb 2026 — Aug 2026<span class="status">7 mos</span></div>
+          <div class="log-time">Feb 2026 — Aug 2026<span class="tag-type">Contract</span></div>
           <div class="log-body">
             <h3>Cloud &amp; System Administrator</h3>
-            <span class="log-role">DXC Technology · Rabat, hybrid · Contract</span>
+            <span class="log-role">DXC Technology · Rabat · Hybrid</span>
+            <p class="log-summary">Worked extensively with the Nutanix Cloud Platform (NCP-MCI Professional track), covering core infrastructure through advanced enterprise features for a hybrid cloud environment.</p>
             <ul>
-              <li><strong>Platform:</strong> worked extensively with the Nutanix Cloud Platform (NCP-MCI Professional track), across core infrastructure and enterprise features.</li>
               <li><strong>Cluster deployment:</strong> designed, implemented, and optimized Nutanix clusters for scalable, resilient infrastructure.</li>
-              <li><strong>Storage:</strong> managed storage pools, containers, and volumes to hold performance and availability.</li>
-              <li><strong>RBAC &amp; security:</strong> configured role-based access control and governance policies to enforce compliance in multi-tenant environments.</li>
-              <li><strong>Disaster recovery:</strong> implemented DR strategies, failover planning, and availability-zone configuration for business continuity.</li>
-              <li><strong>Networking:</strong> configured AHV networking, managed virtual machines, and integrated with external hypervisors.</li>
-              <li><strong>Data protection:</strong> used Nutanix's native tools for snapshots, replication, and backup on critical workloads.</li>
-              <li><strong>Monitoring:</strong> ran proactive monitoring, performance tuning, and issue resolution through Prism Central.</li>
-              <li><strong>Automation:</strong> applied governance frameworks and automation workflows to cut operational overhead.</li>
-              <li><strong>Hybrid cloud:</strong> explored Nutanix hybrid deployments to enable workload mobility and scalability.</li>
+              <li><strong>Storage management:</strong> managed storage pools, containers, and volumes to ensure high performance and availability.</li>
+              <li><strong>RBAC &amp; security:</strong> configured role-based access control and governance policies to enforce compliance across multi-tenant environments.</li>
+              <li><strong>Disaster recovery:</strong> implemented DR strategies, failover planning, and availability-zone configurations to maintain business continuity.</li>
+              <li><strong>Networking &amp; virtualization:</strong> configured AHV networking, managed VMs, and integrated with external hypervisors.</li>
+              <li><strong>Data protection:</strong> used Nutanix native tooling for snapshots, replication, and backup of critical workloads.</li>
+              <li><strong>Monitoring:</strong> used Prism Central for proactive monitoring, performance tuning, and issue resolution.</li>
+              <li><strong>Automation:</strong> applied governance frameworks and automation workflows to reduce operational overhead, while exploring hybrid cloud integration for seamless workload mobility.</li>
             </ul>
+            <div class="skill-pills"><span class="skill-pill">Nutanix</span><span class="skill-pill">Cloud computing</span><span class="skill-pill">RBAC</span><span class="skill-pill">Disaster recovery</span><span class="skill-pill">AHV</span><span class="skill-pill">Prism Central</span></div>
           </div>
         </div>
 
+        <!-- Jobintech -->
         <div class="log-entry">
-          <div class="log-time">Oct 2025 — Jan 2026<span class="status">4 mos</span></div>
+          <div class="log-time">Oct 2025 — Jan 2026<span class="tag-type">Apprenticeship</span></div>
           <div class="log-body">
-            <h3>Cloud Computing — Azure Apprenticeship</h3>
-            <span class="log-role">Jobintech · Univ. Internationale Averroès, Casablanca · On-site</span>
+            <h3>Cloud Computing Azure</h3>
+            <span class="log-role">Jobintech · Université Internationale Averroès, Casablanca · On-site</span>
+            <p class="log-summary">Intensive Cloud &amp; Azure bootcamp building foundations across cloud computing, data, AI, DevOps, and Microsoft ecosystem administration — combining theory with hands-on labs and real-world team challenges.</p>
+            <div class="log-sub">Key learning areas</div>
             <ul>
-              <li><strong>Program:</strong> completed an intensive Cloud &amp; Azure bootcamp covering cloud fundamentals, data, AI, DevOps, and Microsoft ecosystem administration, mixing theory with hands-on labs.</li>
-              <li><strong>Infrastructure:</strong> Windows Server &amp; virtualization — Active Directory, Group Policy, monitoring tools.</li>
-              <li><strong>Azure admin:</strong> virtual machines, storage, networking, identity, and compliance (AZ-104 track).</li>
-              <li><strong>Microsoft 365:</strong> licensing, user and group management, security administration.</li>
-              <li><strong>Data &amp; AI:</strong> relational/non-relational data and Azure analytics (DP-900); ML basics, computer vision, and NLP workloads on Azure (AI-900).</li>
-              <li><strong>Security:</strong> identity and access management, Microsoft security solutions (SC-900).</li>
-              <li><strong>DevOps:</strong> CI/CD pipelines, infrastructure automation, monitoring, team collaboration.</li>
-              <li><strong>Applied:</strong> solved real-world cloud problems in team-based Azure challenges, while preparing for AZ-900, AZ-104, DP-900, AI-900, and SC-900 certifications.</li>
+              <li><strong>Windows Server &amp; virtualization:</strong> Active Directory, Group Policy, monitoring tools.</li>
+              <li><strong>Azure fundamentals (AZ-900):</strong> cloud concepts, Azure architecture, governance.</li>
+              <li><strong>Azure administration (AZ-104):</strong> virtual machines, storage, networking, identity &amp; compliance.</li>
+              <li><strong>Microsoft 365 administration:</strong> licensing, user/group management, security.</li>
+              <li><strong>Data fundamentals (DP-900):</strong> relational &amp; non-relational data, analytics in Azure.</li>
+              <li><strong>AI fundamentals (AI-900):</strong> machine learning basics, computer vision, and NLP workloads on Azure.</li>
+              <li><strong>Security &amp; compliance (SC-900):</strong> identity, access management, Microsoft security solutions.</li>
+              <li><strong>DevOps foundations:</strong> CI/CD pipelines, infrastructure automation, monitoring, team collaboration.</li>
+              <li><strong>Azure challenges:</strong> solved real-world cloud problems through team-based projects, preparing for the AZ-900, AZ-104, DP-900, AI-900, and SC-900 certifications.</li>
             </ul>
           </div>
         </div>
 
+        <!-- IITS -->
         <div class="log-entry">
-          <div class="log-time">Feb 2025 — Jul 2025<span class="status">6 mos</span></div>
+          <div class="log-time">Feb 2025 — Jul 2025<span class="tag-type">Graduation internship</span></div>
           <div class="log-body">
             <h3>Graduation Internship</h3>
-            <span class="log-role">IITS — International IT Services · Prefecture of Casablanca · On-site</span>
+            <span class="log-role">IITS International IT Services · Prefecture of Casablanca · On-site</span>
+            <p class="log-summary">Six-month internship spanning two tracks: a multilingual client-facing web platform, and the installation and configuration of an industrial IoT monitoring network across two communication architectures.</p>
+            <div class="log-sub">Web development</div>
             <ul>
-              <li><strong>Web platform:</strong> designed and built a responsive landing page with full multilingual support (French / English / Arabic).</li>
-              <li><strong>Payments:</strong> integrated a secure payment module using the CMI API.</li>
-              <li><strong>UI:</strong> contributed to a user-friendly interface for real-time data display.</li>
-              <li><strong>IoT architecture:</strong> installed and configured industrial IoT equipment across two communication paths — Modbus to LoRaWAN via The Things Network, and Modbus to TCP/IP with direct database storage.</li>
-              <li><strong>Devices:</strong> deployed an Acrel ADW300 energy meter and a Dragino weather station.</li>
-              <li><strong>Data pipeline:</strong> wrote Python scripts for data collection, processing, and centralization from both architectures.</li>
-              <li><strong>Visualization:</strong> enabled real-time visualization with SynergyIoT, monitored metrics with Prometheus, and built interactive Grafana dashboards.</li>
+              <li>Designed and developed a responsive, multilingual landing page (French / English / Arabic).</li>
+              <li>Integrated a secure payment module using the <strong>CMI API</strong>.</li>
+              <li>Contributed to a user-friendly UI for real-time data display.</li>
             </ul>
+            <div class="log-sub">IoT &amp; monitoring</div>
+            <ul>
+              <li>Configured and deployed IoT devices: an <strong>Acrel ADW300</strong> energy meter and a <strong>Dragino</strong> weather station.</li>
+              <li>Implemented two communication architectures: <strong>Modbus → LoRaWAN</strong> (via The Things Network) and <strong>Modbus → TCP/IP</strong> with direct database storage.</li>
+              <li>Developed Python scripts for data collection, processing, and centralization.</li>
+              <li>Enabled real-time data visualization using <strong>SynergyIoT</strong>, plus <strong>Prometheus</strong> metric monitoring and interactive <strong>Grafana</strong> dashboards.</li>
+            </ul>
+            <div class="skill-pills"><span class="skill-pill">LoRaWAN</span><span class="skill-pill">The Things Network</span><span class="skill-pill">Modbus / TCP-IP</span><span class="skill-pill">CMI API</span><span class="skill-pill">SynergyIoT</span><span class="skill-pill">Prometheus</span><span class="skill-pill">Grafana</span><span class="skill-pill">Data processing</span></div>
           </div>
         </div>
 
+        <!-- OCP -->
         <div class="log-entry">
-          <div class="log-time">Jul 2024 — Sep 2024<span class="status">3 mos</span></div>
+          <div class="log-time">Jul 2024 — Sep 2024<span class="tag-type">Internship</span></div>
           <div class="log-body">
             <h3>Machine Learning Intern</h3>
-            <span class="log-role">OCP Group · Laâyoune, hybrid</span>
+            <span class="log-role">OCP Group · Laâyoune · Hybrid</span>
+            <p class="log-summary">Built a machine-learning system to detect construction workers missing helmets or reflective jackets in video feeds, automating safety supervision that was previously manual.</p>
             <ul>
-              <li><strong>Goal:</strong> built a machine-learning system to detect workers missing helmets or reflective jackets on video, to automate safety supervision on construction sites.</li>
-              <li><strong>Data:</strong> sourced a safety helmet/jacket dataset from Kaggle and hand-annotated images in YOLO format (class + bounding box).</li>
-              <li><strong>Pipeline:</strong> structured the dataset into training, validation, and test folders, then trained a YOLOv8 model on Google Colab.</li>
-              <li><strong>Tracking:</strong> integrated ByteTrack for person tracking, with custom detection logic drawing green or red boxes based on compliance.</li>
-              <li><strong>Alerting:</strong> built an alert system that captured violation screenshots and emailed them to the site monitor in real time.</li>
-              <li><strong>Tuning:</strong> validated accuracy across multiple videos and eliminated duplicate alerts from re-tracking the same person.</li>
+              <li><strong>Data collection:</strong> sourced a helmet/jacket safety-equipment dataset from Kaggle.</li>
+              <li><strong>Annotation:</strong> labeled images in YOLO format (class + bounding box).</li>
+              <li><strong>Data organization:</strong> structured folders for training, validation, and testing.</li>
+              <li><strong>Model training:</strong> trained a YOLOv8 model on the dataset using Google Colab.</li>
+              <li><strong>Testing:</strong> validated the trained model against real video footage of site violations.</li>
+              <li><strong>Tracking &amp; detection:</strong> integrated <strong>ByteTrack</strong> for person tracking, with custom logic drawing green or red boxes based on compliance.</li>
+              <li><strong>Alerting:</strong> captured screenshots of violations and sent automated email alerts to the site monitor.</li>
+              <li><strong>Tuning:</strong> refined the system for accuracy, avoided re-flagging the same person twice, and validated across multiple videos.</li>
             </ul>
+            <div class="skill-pills"><span class="skill-pill">Object detection</span><span class="skill-pill">CNNs</span><span class="skill-pill">YOLOv8</span><span class="skill-pill">ByteTrack</span></div>
           </div>
         </div>
 
+        <!-- ONEE -->
         <div class="log-entry">
-          <div class="log-time">Apr 2022 — Jun 2022<span class="status">3 mos</span></div>
+          <div class="log-time">Apr 2022 — Jun 2022<span class="tag-type">Internship</span></div>
           <div class="log-body">
             <h3>Information Technology Business Analyst</h3>
-            <span class="log-role">ONEE — Branche Eau · Rabat</span>
+            <span class="log-role">ONEE — Branche Eau · Morocco</span>
+            <p class="log-summary">Built a forecasting system for ONEE Rabat's water branch to calculate and report technical ratios and expense/revenue line items.</p>
             <ul>
-              <li><strong>System:</strong> built a forecasting and reporting system for technical ratios and expense/revenue line items for ONEE Rabat's Branche Eau.</li>
-              <li><strong>Extraction:</strong> pulled source data directly from SAP.</li>
-              <li><strong>Modeling:</strong> implemented the forecasting calculations in Python using Jupyter notebooks.</li>
+              <li><strong>System design:</strong> set up a calculation and reporting system for forecasting technical ratios and cost/revenue categories.</li>
+              <li><strong>Data extraction:</strong> pulled source data directly from SAP.</li>
+              <li><strong>Calculation engine:</strong> implemented the forecasting logic in Python using Jupyter notebooks.</li>
               <li><strong>Reporting:</strong> delivered the results as Power BI reports for stakeholder review.</li>
             </ul>
+            <div class="skill-pills"><span class="skill-pill">SQL</span><span class="skill-pill">Microsoft SQL Server</span><span class="skill-pill">Python</span><span class="skill-pill">Power BI</span></div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -430,51 +462,61 @@
         <div class="project">
           <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
           <div class="project-top">
-            <h3>Industrial safety vision system</h3>
+            <h3>Construction-site safety detection</h3>
             <span class="confidence">OCP GROUP</span>
           </div>
-          <p>Real-time computer-vision system built on YOLOv8 to detect and track safety events on industrial sites. Optimized the inference pipeline to keep latency low enough for live monitoring, and owned data quality from image curation through integration testing.</p>
-          <div class="tags"><span class="tag">YOLOv8</span><span class="tag">Python</span><span class="tag">Computer vision</span><span class="tag">MLOps</span></div>
+          <p>End-to-end computer-vision pipeline that flags workers missing helmets or reflective jackets. YOLOv8 handles detection, ByteTrack keeps identities stable across frames, and a custom alerting layer captures a screenshot and emails site supervisors the moment a violation is confirmed — without re-flagging the same person twice.</p>
+          <div class="tags"><span class="tag">YOLOv8</span><span class="tag">ByteTrack</span><span class="tag">Python</span><span class="tag">Google Colab</span><span class="tag">Email alerting</span></div>
         </div>
 
         <div class="project">
           <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
           <div class="project-top">
-            <h3>Cloud-native internal tools platform</h3>
+            <h3>Industrial IoT monitoring network</h3>
+            <span class="confidence">IITS</span>
+          </div>
+          <p>Deployed and wired up an Acrel energy meter and a Dragino weather station across two parallel architectures — Modbus over LoRaWAN via The Things Network, and Modbus over TCP/IP into a database — then built the Python layer that collects, centralizes, and surfaces that data live through SynergyIoT, Prometheus, and Grafana.</p>
+          <div class="tags"><span class="tag">LoRaWAN</span><span class="tag">Modbus</span><span class="tag">The Things Network</span><span class="tag">Grafana</span><span class="tag">Prometheus</span></div>
+        </div>
+
+        <div class="project">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="project-top">
+            <h3>Multilingual site with embedded payments</h3>
+            <span class="confidence">IITS</span>
+          </div>
+          <p>Responsive landing page shipped in French, English, and Arabic, with a secure checkout flow built on the CMI payment API and a UI designed to surface real-time data clearly to non-technical visitors.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">i18n</span><span class="tag">CMI API</span><span class="tag">Responsive UI</span></div>
+        </div>
+
+        <div class="project">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="project-top">
+            <h3>Nutanix hybrid cloud operations</h3>
             <span class="confidence">DXC TECHNOLOGY</span>
           </div>
-          <p>Backend services and internal tooling engineered for high availability, holding 99.9% uptime. Owned the full software lifecycle — requirements, build, containerized deployment — and designed for resilience under complex business logic.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Docker</span><span class="tag">Azure</span><span class="tag">CI/CD</span></div>
+          <p>Deployed and operated Nutanix clusters end to end — storage pools, AHV networking, RBAC and governance, disaster-recovery and availability-zone failover — while using Prism Central to monitor performance and automate routine operations across a hybrid environment.</p>
+          <div class="tags"><span class="tag">Nutanix</span><span class="tag">AHV</span><span class="tag">Disaster recovery</span><span class="tag">Prism Central</span></div>
         </div>
 
         <div class="project">
           <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
           <div class="project-top">
-            <h3>Kubernetes-orchestrated web platform</h3>
-            <span class="confidence">JOBINTECH</span>
-          </div>
-          <p>Full-stack web applications built with Python and React, deployed as modular microservices on AKS with Docker. Set up CI/CD pipelines with automated unit testing, and secured deployments with Entra ID role-based access control.</p>
-          <div class="tags"><span class="tag">React</span><span class="tag">Kubernetes</span><span class="tag">Azure DevOps</span><span class="tag">RBAC</span></div>
-        </div>
-
-        <div class="project">
-          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-          <div class="project-top">
-            <h3>IoT real-time monitoring platform</h3>
-            <span class="confidence">INTL. IT SERVICES</span>
-          </div>
-          <p>Backend Python services for real-time acquisition and processing of data from industrial IoT sensors, feeding live Grafana dashboards built on Prometheus metrics for technical stakeholders monitoring plant conditions.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">IoT</span></div>
-        </div>
-
-        <div class="project">
-          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-          <div class="project-top">
-            <h3>Predictive maintenance BI suite</h3>
+            <h3>SAP-to-Power BI forecasting system</h3>
             <span class="confidence">ONEE BRANCHE EAU</span>
           </div>
-          <p>Automated ETL workflows moving SAP ERP data into SQL Server for predictive analytics, paired with interactive Power BI dashboards that translated infrastructure data into long-term maintenance forecasts.</p>
-          <div class="tags"><span class="tag">SQL Server</span><span class="tag">ETL</span><span class="tag">Power BI</span><span class="tag">Forecasting</span></div>
+          <p>Extracted operational data directly from SAP, built the forecasting logic for technical ratios and cost/revenue line items in Python and Jupyter, and delivered the output as Power BI reports used for planning decisions.</p>
+          <div class="tags"><span class="tag">SAP</span><span class="tag">SQL Server</span><span class="tag">Python</span><span class="tag">Power BI</span></div>
+        </div>
+
+        <div class="project">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="project-top">
+            <h3>Cloud &amp; Azure bootcamp challenges</h3>
+            <span class="confidence">JOBINTECH</span>
+          </div>
+          <p>Team-based Azure challenges covering virtual machines, storage, networking, identity, and DevOps automation — hands-on labs built to mirror real infrastructure problems, in preparation for five Microsoft certifications.</p>
+          <div class="tags"><span class="tag">Azure</span><span class="tag">Active Directory</span><span class="tag">DevOps</span><span class="tag">M365 admin</span></div>
         </div>
       </div>
     </div>
@@ -505,17 +547,33 @@
           <ul>
             <li><span class="name">React</span> TypeScript</li>
             <li><span class="name">Core</span> HTML5, CSS3, JS</li>
-            <li><span class="name">UI kits</span> Tailwind, Material UI, Bootstrap</li>
+            <li><span class="name">UI kits</span> Tailwind, Material UI</li>
             <li><span class="name">Data viz</span> D3.js</li>
           </ul>
         </div>
         <div class="skill-cluster">
-          <h3>Cloud &amp; DevOps</h3>
+          <h3>Cloud &amp; infrastructure</h3>
           <ul>
             <li><span class="name">Azure</span> AKS, Functions</li>
-            <li><span class="name">Infra</span> Terraform, AWS</li>
+            <li><span class="name">Nutanix</span> NCP-MCI</li>
+            <li><span class="name">Infra as code</span> Terraform</li>
             <li><span class="name">Containers</span> Docker, Kubernetes</li>
-            <li><span class="name">CI/CD</span> Azure DevOps</li>
+          </ul>
+        </div>
+        <div class="skill-cluster">
+          <h3>Computer vision</h3>
+          <ul>
+            <li><span class="name">Detection</span> YOLOv8, CNNs</li>
+            <li><span class="name">Tracking</span> ByteTrack</li>
+            <li><span class="name">Pipeline</span> Annotation, curation</li>
+          </ul>
+        </div>
+        <div class="skill-cluster">
+          <h3>IoT &amp; monitoring</h3>
+          <ul>
+            <li><span class="name">Protocols</span> Modbus, LoRaWAN, TCP/IP</li>
+            <li><span class="name">Platforms</span> The Things Network, SynergyIoT</li>
+            <li><span class="name">Observability</span> Prometheus, Grafana</li>
           </ul>
         </div>
         <div class="skill-cluster">
@@ -524,26 +582,29 @@
             <li><span class="name">SQL</span> Postgres, SQL Server, MySQL</li>
             <li><span class="name">NoSQL</span> MongoDB</li>
             <li><span class="name">BI</span> Power BI</li>
-            <li><span class="name">Monitoring</span> Prometheus, Grafana</li>
+            <li><span class="name">Source systems</span> SAP extraction</li>
           </ul>
         </div>
-        <div class="skill-cluster">
-          <h3>Vision &amp; ML</h3>
-          <ul>
-            <li><span class="name">Detection</span> YOLOv8</li>
-            <li><span class="name">Pipelines</span> Image curation, integration testing</li>
-            <li><span class="name">Focus</span> Real-time inference, low-latency serving</li>
-          </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-tag">05 — Certifications</div>
+          <h2>In progress</h2>
         </div>
-        <div class="skill-cluster">
-          <h3>Core &amp; delivery</h3>
-          <ul>
-            <li><span class="name">Systems</span> Linux, shell scripting</li>
-            <li><span class="name">Architecture</span> Microservices, solution design</li>
-            <li><span class="name">Version control</span> Git</li>
-            <li><span class="name">Way of working</span> Agile delivery</li>
-          </ul>
-        </div>
+        <div class="section-note">Pursued through the Jobintech Cloud &amp; Azure bootcamp.</div>
+      </div>
+      <div class="cert-row">
+        <div class="cert"><div class="id">AZ-900</div><div class="label">Azure Fundamentals</div></div>
+        <div class="cert"><div class="id">AZ-104</div><div class="label">Azure Administrator</div></div>
+        <div class="cert"><div class="id">DP-900</div><div class="label">Data Fundamentals</div></div>
+        <div class="cert"><div class="id">AI-900</div><div class="label">AI Fundamentals</div></div>
+        <div class="cert"><div class="id">SC-900</div><div class="label">Security, Compliance &amp; Identity</div></div>
       </div>
     </div>
   </section>
@@ -553,7 +614,7 @@
     <div class="wrap">
       <div class="section-head">
         <div>
-          <div class="section-tag">05 — Education</div>
+          <div class="section-tag">06 — Education</div>
           <h2>Background</h2>
         </div>
       </div>
@@ -585,7 +646,7 @@
   <!-- CONTACT -->
   <section class="section contact" id="contact">
     <div class="wrap">
-      <div class="section-tag">06 — Contact</div>
+      <div class="section-tag">07 — Contact</div>
       <h2>Let's build something that ships.</h2>
       <div class="contact-row">
         <div class="contact-item">
@@ -598,7 +659,7 @@
         </div>
         <div class="contact-item">
           <div class="k">LinkedIn</div>
-          <a class="v" href="https://linkedin.com" target="_blank" rel="noopener">View profile</a>
+          <a class="v" href="https://www.linkedin.com/in/soufyane-ochaali01/" target="_blank" rel="noopener">View profile</a>
         </div>
         <div class="contact-item">
           <div class="k">Based in</div>
