@@ -3,262 +3,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ouchaali Soufyane — Delivery AI Software Engineer</title>
-<meta name="description" content="Portfolio of Ouchaali Soufyane, AI &amp; Full-Stack Software Engineer specializing in computer vision and cloud architecture.">
+<title>Ouchaali Soufyane — AI &amp; Cloud Software Engineer</title>
+<meta name="description" content="Portfolio of Ouchaali Soufyane — AI, computer vision, IoT and cloud software engineer based in Casablanca.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #14171C;
-    --surface: #1B1F26;
-    --surface-2: #1F242C;
-    --border: #2C323C;
-    --border-soft: #23282F;
-    --text: #E8EAED;
-    --text-dim: #9098A6;
-    --text-faint: #565D69;
-    --accent: #FF8A3D;
-    --accent-soft: rgba(255,138,61,0.12);
-    --teal: #5EEAD4;
+    --bg: #0E0F1F;
+    --bg-soft: #14152B;
+    --glass: rgba(255,255,255,0.045);
+    --glass-hover: rgba(255,255,255,0.07);
+    --glass-border: rgba(255,255,255,0.10);
+    --text: #F3F2FA;
+    --text-dim: #A2A4C7;
+    --text-faint: #6B6D91;
+    --violet: #8B5CF6;
+    --violet-soft: rgba(139,92,246,0.18);
+    --cyan: #22D3EE;
+    --cyan-soft: rgba(34,211,238,0.16);
+    --pink: #F472B6;
+    --grad: linear-gradient(120deg, var(--violet), var(--cyan));
     --font-display: 'Space Grotesk', sans-serif;
-    --font-body: 'IBM Plex Sans', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
+    --font-body: 'Inter', sans-serif;
     --maxw: 1180px;
   }
-
   *{ box-sizing: border-box; }
   html{ scroll-behavior: smooth; }
   body{
-    margin:0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
+    margin:0; background: var(--bg); color: var(--text);
+    font-family: var(--font-body); font-size:16px; line-height:1.65;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
   }
-  body::before{
-    content:"";
-    position: fixed; inset:0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: 48px 48px;
-    pointer-events: none;
-    z-index: 0;
+  a{ color:inherit; text-decoration:none; }
+  section{ position:relative; z-index:1; }
+  .wrap{ max-width: var(--maxw); margin:0 auto; padding: 0 32px; }
+  h1,h2,h3{ font-family: var(--font-display); margin:0; font-weight:600; letter-spacing:-0.01em; }
+  ::selection{ background: var(--violet-soft); color:#fff; }
+  :focus-visible{ outline: 2px solid var(--cyan); outline-offset: 3px; }
+  .grad-text{
+    background: var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;
   }
-  a{ color: inherit; text-decoration: none; }
-  img{ max-width:100%; display:block; }
-  section{ position: relative; z-index: 1; }
-  .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
-  h1,h2,h3{ font-family: var(--font-display); margin:0; font-weight: 600; letter-spacing: -0.01em; }
-  .mono{ font-family: var(--font-mono); }
-  ::selection{ background: var(--accent-soft); color: var(--accent); }
-  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* background ambient blobs */
+  .blob{
+    position: fixed; border-radius: 50%; filter: blur(90px); z-index:0; pointer-events:none;
+    opacity: .35; transition: transform 1.2s ease-out;
+  }
+  .blob-a{ width:520px; height:520px; background: var(--violet); top:-160px; left:-160px; }
+  .blob-b{ width:460px; height:460px; background: var(--cyan); bottom:-140px; right:-120px; opacity:.22; }
 
   /* ---------- NAV ---------- */
   header.nav{
-    position: fixed; top:0; left:0; right:0; z-index: 50;
-    background: rgba(20,23,28,0.85);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-soft);
+    position: fixed; top:0; left:0; right:0; z-index: 100;
+    background: rgba(14,15,31,0.7); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--glass-border);
   }
-  .nav-inner{
-    max-width: var(--maxw); margin: 0 auto; padding: 18px 32px;
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  .brand{ font-family: var(--font-mono); font-size: 14px; color: var(--text); display:flex; align-items:center; gap:8px; }
-  .brand .dot{ width:6px; height:6px; background: var(--accent); border-radius:50%; box-shadow: 0 0 8px var(--accent); }
-  nav.links{ display:flex; gap:28px; }
-  nav.links a{ font-size: 14px; color: var(--text-dim); transition: color .15s ease; }
+  .nav-inner{ max-width: var(--maxw); margin:0 auto; padding: 16px 32px; display:flex; align-items:center; justify-content:space-between; }
+  .brand{ font-family: var(--font-display); font-weight:600; font-size:16px; display:flex; align-items:center; gap:10px; }
+  .brand .mark{ width:28px; height:28px; border-radius:8px; background: var(--grad); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#0E0F1F; }
+  nav.links{ display:flex; gap:30px; }
+  nav.links a{ font-size:14px; color: var(--text-dim); transition: color .2s ease; }
   nav.links a:hover{ color: var(--text); }
-  .nav-cta{
-    font-family: var(--font-mono); font-size: 13px; color: var(--bg);
-    background: var(--accent); padding: 8px 14px; border-radius: 2px;
-    transition: opacity .15s ease;
-  }
-  .nav-cta:hover{ opacity: .85; }
+  .nav-cta{ font-size:13px; font-weight:600; padding:9px 18px; border-radius:999px; background: var(--grad); color:#0E0F1F; }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--glass-border); color:var(--text); width:38px; height:38px; border-radius:8px; cursor:pointer; }
 
   /* ---------- HERO ---------- */
-  .hero{
-    min-height: 100vh;
-    display:flex; flex-direction:column; justify-content:center;
-    padding-top: 90px; padding-bottom: 60px;
-    overflow: hidden;
-  }
-  .hero-frame{
-    position: relative;
-    padding: 56px clamp(20px, 5vw, 64px);
-    border: 1px solid var(--border);
-  }
-  .corner{ position:absolute; width:16px; height:16px; }
-  .corner::before, .corner::after{ content:""; position:absolute; background: var(--accent); }
-  .corner.tl{ top:-1px; left:-1px; } .corner.tr{ top:-1px; right:-1px; } .corner.bl{ bottom:-1px; left:-1px; } .corner.br{ bottom:-1px; right:-1px; }
-  .corner::before{ width:100%; height:2px; }
-  .corner::after{ width:2px; height:100%; }
-  .corner.tl::before, .corner.tl::after{ top:0; left:0; }
-  .corner.tr::before{ top:0; right:0; } .corner.tr::after{ top:0; right:0; }
-  .corner.bl::before{ bottom:0; left:0; } .corner.bl::after{ bottom:0; left:0; }
-  .corner.br::before{ bottom:0; right:0; } .corner.br::after{ bottom:0; right:0; }
+  .hero{ min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding-top:100px; padding-bottom:60px; position:relative; }
+  #particles{ position:absolute; inset:0; z-index:0; opacity:.6; }
+  .hero-inner{ position:relative; z-index:2; }
+  .kicker{ font-size:14px; color: var(--cyan); font-weight:600; margin-bottom:18px; opacity:0; animation: rise .7s ease .2s forwards; }
+  .hero h1{ font-size: clamp(2.6rem, 7vw, 5rem); line-height:1.04; opacity:0; animation: rise .8s ease .35s forwards; }
+  .hero p.lede{ max-width:600px; margin-top:22px; font-size:18px; color: var(--text-dim); opacity:0; animation: rise .8s ease .6s forwards; }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:16px; margin-top:34px; opacity:0; animation: rise .8s ease .85s forwards; }
+  @keyframes rise{ from{ opacity:0; transform: translateY(16px); } to{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce){ .kicker,.hero h1,.hero p.lede,.hero-actions{ animation:none !important; opacity:1 !important; } }
 
-  .scan-line{
-    position:absolute; left:0; right:0; top:0; height:2px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    opacity: .9;
-    animation: scan 2.4s ease-in-out 0.3s 1 both;
-  }
-  @keyframes scan{
-    0%{ top:0; opacity:0; }
-    8%{ opacity:1; }
-    92%{ opacity:1; }
-    100%{ top:100%; opacity:0; }
-  }
+  .btn{ font-size:14px; font-weight:600; padding:13px 24px; border-radius:999px; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; display:inline-block; }
+  .btn.primary{ background: var(--grad); color:#0E0F1F; }
+  .btn.primary:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px -8px var(--violet); }
+  .btn.ghost{ border:1px solid var(--glass-border); color: var(--text); background: var(--glass); }
+  .btn.ghost:hover{ background: var(--glass-hover); transform: translateY(-2px); }
 
-  .readout{
-    font-family: var(--font-mono); font-size: 12px; color: var(--text-faint);
-    display:flex; flex-wrap: wrap; gap: 24px; margin-bottom: 28px;
-    opacity:0; animation: fadeIn .6s ease 1.8s forwards;
-  }
-  .readout span b{ color: var(--text-dim); font-weight: 500; }
-  @keyframes fadeIn{ to{ opacity:1; } }
+  .stat-strip{ display:flex; gap:56px; margin-top:70px; flex-wrap:wrap; opacity:0; animation: rise .8s ease 1.05s forwards; }
+  .stat-num{ font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.8rem); font-weight:700; }
+  .stat-label{ color: var(--text-dim); font-size:14px; margin-top:4px; max-width:16ch; }
 
-  .hero-role{
-    font-family: var(--font-mono); font-size: 13px; color: var(--accent);
-    margin-bottom: 18px;
-    opacity:0; animation: fadeIn .6s ease .9s forwards;
-  }
-  .hero h1{
-    font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1.02; color: var(--text);
-    opacity:0; animation: fadeIn .7s ease 1.05s forwards;
-  }
-  .hero p.lede{
-    max-width: 620px; margin-top: 24px; color: var(--text-dim); font-size: 17px;
-    opacity:0; animation: fadeIn .7s ease 1.5s forwards;
-  }
-  .hero-actions{
-    display:flex; flex-wrap:wrap; gap:14px; margin-top: 34px;
-    opacity:0; animation: fadeIn .7s ease 2s forwards;
-  }
-  .btn{
-    font-family: var(--font-mono); font-size: 13px; padding: 12px 20px; border-radius: 2px;
-    border: 1px solid var(--border); transition: border-color .15s ease, color .15s ease, background .15s ease;
-  }
-  .btn.primary{ background: var(--accent); color: var(--bg); border-color: var(--accent); }
-  .btn.primary:hover{ opacity: .88; }
-  .btn.ghost{ color: var(--text-dim); }
-  .btn.ghost:hover{ color: var(--text); border-color: var(--text-faint); }
-
-  @media (prefers-reduced-motion: reduce){
-    .scan-line, .readout, .hero-role, .hero h1, .hero p.lede, .hero-actions{ animation: none !important; opacity: 1 !important; }
-  }
+  /* ---------- REVEAL ---------- */
+  .reveal{ opacity:0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in-view{ opacity:1; transform:none; }
 
   /* ---------- SECTION HEADS ---------- */
-  .section{ padding: 110px 0; border-top: 1px solid var(--border-soft); }
-  .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap: 24px; margin-bottom: 52px; flex-wrap: wrap; }
-  .section-tag{ font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
-  .section-head h2{ font-size: clamp(1.7rem, 3vw, 2.3rem); }
-  .section-note{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); max-width: 280px; text-align:right; }
+  .section{ padding: 120px 0; }
+  .section-head{ margin-bottom:56px; max-width:640px; }
+  .section-head .kicker{ margin-bottom:12px; opacity:1; animation:none; }
+  .section-head h2{ font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
+  .section-head p{ color: var(--text-dim); font-size:16px; margin-top:14px; max-width: 56ch; }
 
   /* ---------- ABOUT ---------- */
-  .about-grid{ display:grid; grid-template-columns: 1.3fr 1fr; gap: 64px; }
-  .about-grid p{ color: var(--text-dim); font-size: 17px; margin: 0 0 18px; max-width: 62ch; }
-  .about-grid p strong{ color: var(--text); font-weight: 500; }
-  .stat-list{ display:flex; flex-direction:column; gap: 0; border-top: 1px solid var(--border-soft); }
-  .stat-row{ display:flex; justify-content:space-between; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border-soft); }
-  .stat-row .k{ color: var(--text-dim); font-size: 14px; }
-  .stat-row .v{ font-family: var(--font-mono); color: var(--text); font-size: 13px; text-align:right; }
+  .about-grid{ display:grid; grid-template-columns: 1.25fr 1fr; gap:60px; align-items:start; }
+  .about-grid p{ color: var(--text-dim); font-size:17px; margin:0 0 18px; max-width:60ch; }
+  .about-grid strong{ color: var(--text); font-weight:600; }
+  .focus-card{ background: var(--glass); border:1px solid var(--glass-border); border-radius:20px; padding:28px; }
+  .focus-card h3{ font-size:15px; margin-bottom:18px; color: var(--text); }
+  .focus-row{ display:flex; justify-content:space-between; gap:12px; padding:13px 0; border-bottom:1px solid var(--glass-border); font-size:14px; }
+  .focus-row:last-child{ border-bottom:none; }
+  .focus-row .k{ color: var(--text-dim); }
+  .focus-row .v{ color: var(--text); text-align:right; font-weight:500; }
 
-  /* ---------- EXPERIENCE (log) ---------- */
-  .log{ border-top: 1px solid var(--border-soft); }
-  .log-entry{ display:grid; grid-template-columns: 150px 1fr; gap: 40px; padding: 40px 0; border-bottom: 1px solid var(--border-soft); }
-  .log-time{ font-family: var(--font-mono); font-size: 13px; color: var(--text-faint); padding-top: 4px; }
-  .log-time .tag-type{ display:inline-block; margin-top:10px; font-size:11px; color: var(--text-dim); border:1px solid var(--border); padding:2px 8px; border-radius: 2px; }
-  .log-body h3{ font-size: 20px; color: var(--text); margin-bottom:2px; }
-  .log-role{ font-family: var(--font-mono); font-size: 13px; color: var(--text-dim); margin-bottom: 6px; display:block; }
-  .log-summary{ color: var(--text-dim); font-size: 15px; margin: 10px 0 18px; max-width: 68ch; }
-  .log-sub{ font-family: var(--font-mono); font-size: 11px; color: var(--accent); margin: 18px 0 8px; text-transform: none; }
-  .log-body ul{ margin:0 0 6px; padding:0; list-style:none; display:flex; flex-direction:column; gap:10px; }
-  .log-body li{ color: var(--text-dim); font-size: 15px; padding-left: 18px; position:relative; }
-  .log-body li::before{ content:"›"; position:absolute; left:0; color: var(--accent); }
-  .log-body li strong{ color: var(--text); font-weight:500; }
-  .skill-pills{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 20px; }
-  .skill-pill{ font-family: var(--font-mono); font-size: 11px; color: var(--text-faint); border: 1px dashed var(--border); padding: 4px 9px; border-radius: 2px; }
-
-  @media (max-width: 720px){
-    .log-entry{ grid-template-columns: 1fr; gap: 10px; }
-    .about-grid{ grid-template-columns: 1fr; gap: 40px; }
+  /* ---------- CAROUSEL (shared) ---------- */
+  .carousel-wrap{ position:relative; }
+  .carousel{
+    display:flex; gap:22px; overflow-x:auto; scroll-snap-type: x mandatory;
+    padding: 6px 4px 26px; -webkit-overflow-scrolling: touch; scrollbar-width:none; cursor:grab;
   }
+  .carousel.dragging{ cursor:grabbing; scroll-snap-type:none; }
+  .carousel::-webkit-scrollbar{ display:none; }
+  .carousel-controls{ display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; }
+  .carousel-dots{ display:flex; gap:8px; }
+  .dot{ width:7px; height:7px; border-radius:50%; background: var(--glass-border); transition: background .2s ease, width .2s ease; }
+  .dot.active{ background: var(--grad); width:22px; border-radius:4px; }
+  .arrow-group{ display:flex; gap:10px; }
+  .arrow-btn{ width:42px; height:42px; border-radius:50%; border:1px solid var(--glass-border); background: var(--glass); color: var(--text); cursor:pointer; display:flex; align-items:center; justify-content:center; transition: background .18s ease, transform .18s ease; }
+  .arrow-btn:hover{ background: var(--glass-hover); transform: translateY(-2px); }
 
-  /* ---------- PROJECTS ---------- */
-  .grid-projects{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .project{
-    position: relative; border: 1px solid var(--border); padding: 30px;
-    transition: border-color .18s ease, background .18s ease;
+  /* ---------- EXPERIENCE CARDS ---------- */
+  .exp-card{
+    scroll-snap-align: start; flex: 0 0 auto; width: min(560px, 84vw);
+    background: var(--glass); border:1px solid var(--glass-border); border-radius: 22px; padding: 32px;
+    display:flex; flex-direction:column;
   }
-  .project:hover{ border-color: var(--accent); background: var(--surface); }
-  .project .corner{ opacity: 0; transition: opacity .18s ease; }
-  .project:hover .corner{ opacity: 1; }
-  .project-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 18px; gap: 10px; }
-  .confidence{ font-family: var(--font-mono); font-size: 11px; color: var(--teal); border: 1px solid rgba(94,234,212,0.35); padding: 3px 8px; border-radius: 2px; white-space:nowrap; }
-  .project h3{ font-size: 19px; margin-bottom: 10px; }
-  .project p{ color: var(--text-dim); font-size: 14.5px; margin: 0 0 18px; }
-  .tags{ display:flex; flex-wrap:wrap; gap:8px; }
-  .tag{ font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); border: 1px solid var(--border); padding: 4px 9px; border-radius: 2px; }
+  .exp-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:14px; margin-bottom:18px; }
+  .exp-badge{ width:44px; height:44px; border-radius:12px; background: var(--grad); flex:0 0 auto; display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-weight:700; color:#0E0F1F; font-size:15px; }
+  .exp-dates{ font-size:12.5px; color: var(--text-faint); text-align:right; }
+  .exp-card h3{ font-size: 20px; margin-bottom:4px; }
+  .exp-role{ font-size:13.5px; color: var(--cyan); margin-bottom:14px; display:block; }
+  .exp-card > p.summary{ color: var(--text-dim); font-size:14.5px; margin:0 0 16px; }
+  .exp-card ul{ margin:0 0 18px; padding:0; list-style:none; display:flex; flex-direction:column; gap:9px; flex:1; }
+  .exp-card li{ color: var(--text-dim); font-size:14px; padding-left:16px; position:relative; }
+  .exp-card li::before{ content:""; position:absolute; left:0; top:8px; width:5px; height:5px; border-radius:50%; background: var(--cyan); }
+  .exp-card li strong{ color: var(--text); font-weight:600; }
+  .pill-row{ display:flex; flex-wrap:wrap; gap:7px; margin-top:auto; }
+  .pill{ font-size:11.5px; color: var(--text-dim); background: rgba(255,255,255,0.05); border:1px solid var(--glass-border); padding:4px 10px; border-radius:999px; }
 
-  @media (max-width: 780px){ .grid-projects{ grid-template-columns: 1fr; } }
+  /* ---------- PROJECT CARDS ---------- */
+  .proj-card{
+    scroll-snap-align: start; flex: 0 0 auto; width: min(400px, 80vw);
+    border-radius: 22px; padding: 2px; background: linear-gradient(140deg, rgba(139,92,246,0.35), rgba(34,211,238,0.15));
+  }
+  .proj-inner{ background: #12132A; border-radius:20px; padding:28px; height:100%; display:flex; flex-direction:column; transition: transform .25s ease; }
+  .proj-tag{ font-size:11.5px; color: var(--cyan); font-weight:600; margin-bottom:14px; }
+  .proj-card h3{ font-size:18px; margin-bottom:10px; }
+  .proj-card p{ color: var(--text-dim); font-size:14px; margin:0 0 18px; flex:1; }
 
   /* ---------- SKILLS ---------- */
-  .skills-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-soft); border: 1px solid var(--border-soft); }
-  .skill-cluster{ background: var(--bg); padding: 28px; }
-  .skill-cluster h3{ font-family: var(--font-mono); font-size: 12px; color: var(--accent); font-weight:500; margin-bottom: 18px; }
-  .skill-cluster ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap: 12px; }
-  .skill-cluster li{ display:flex; justify-content:space-between; gap: 10px; font-size: 14px; color: var(--text-dim); border-bottom: 1px dashed var(--border-soft); padding-bottom: 12px; }
-  .skill-cluster li:last-child{ border-bottom:none; padding-bottom:0; }
-  .skill-cluster li span.name{ color: var(--text); white-space: nowrap; }
+  .skills-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; }
+  .skill-card{ background: var(--glass); border:1px solid var(--glass-border); border-radius:18px; padding:24px; }
+  .skill-card h3{ font-size:14.5px; margin-bottom:16px; color: var(--text); }
+  .skill-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .skill-tags span{ font-size:12.5px; color: var(--text-dim); background: rgba(255,255,255,0.05); border:1px solid var(--glass-border); padding:5px 11px; border-radius:999px; }
+  @media (max-width:900px){ .skills-grid{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width:600px){ .skills-grid{ grid-template-columns: 1fr; } }
 
-  @media (max-width: 900px){ .skills-grid{ grid-template-columns: 1fr; } }
+  /* ---------- MARQUEE ---------- */
+  .marquee-wrap{ overflow:hidden; border-top:1px solid var(--glass-border); border-bottom:1px solid var(--glass-border); padding:26px 0; }
+  .marquee{ display:flex; gap:56px; width:max-content; animation: scroll-left 30s linear infinite; }
+  .marquee span{ font-family: var(--font-display); font-size:20px; color: var(--text-faint); white-space:nowrap; }
+  @keyframes scroll-left{ from{ transform:translateX(0); } to{ transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce){ .marquee{ animation:none; } }
 
-  /* ---------- CERTIFICATIONS ---------- */
-  .cert-row{ display:flex; flex-wrap: wrap; gap: 14px; }
-  .cert{ border: 1px solid var(--border); padding: 14px 18px; flex: 1 1 150px; }
-  .cert .id{ font-family: var(--font-mono); font-size: 13px; color: var(--accent); margin-bottom: 4px; }
-  .cert .label{ font-size: 13px; color: var(--text-dim); }
+  /* ---------- CERTS ---------- */
+  .cert-row{ display:flex; flex-wrap:wrap; gap:16px; }
+  .cert{ flex:1 1 160px; background: var(--glass); border:1px solid var(--glass-border); border-radius:16px; padding:18px 20px; }
+  .cert .id{ font-family: var(--font-display); font-size:16px; color: var(--cyan); margin-bottom:4px; }
+  .cert .label{ font-size:13px; color: var(--text-dim); }
 
-  /* ---------- EDUCATION / LANG ---------- */
-  .edu-lang{ display:grid; grid-template-columns: 1.4fr 1fr; gap: 64px; }
-  .edu-item{ padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
-  .edu-item:first-child{ padding-top: 0; }
-  .edu-item .deg{ font-size: 16px; color: var(--text); margin-bottom: 4px; }
-  .edu-item .school{ font-family: var(--font-mono); font-size: 12.5px; color: var(--text-dim); display:flex; justify-content:space-between; }
-  .lang-item{ display:flex; justify-content:space-between; align-items:center; padding: 14px 0; border-bottom: 1px solid var(--border-soft); }
-  .lang-item:last-child{ border-bottom: none; }
-  .lang-name{ font-size: 15px; color: var(--text); }
-  .lang-level{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
-  @media (max-width: 780px){ .edu-lang{ grid-template-columns: 1fr; } }
+  /* ---------- EDUCATION ---------- */
+  .edu-lang{ display:grid; grid-template-columns: 1.3fr 1fr; gap:56px; }
+  .edu-item{ padding:18px 0; border-bottom:1px solid var(--glass-border); }
+  .edu-item:first-child{ padding-top:0; }
+  .edu-item .deg{ font-size:15.5px; color: var(--text); margin-bottom:5px; font-weight:500; }
+  .edu-item .school{ font-size:13px; color: var(--text-dim); display:flex; justify-content:space-between; gap:12px; }
+  .lang-item{ display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--glass-border); }
+  .lang-item:last-child{ border-bottom:none; }
+  .lang-level{ color: var(--text-faint); font-size:13px; }
+  @media (max-width:780px){ .edu-lang, .about-grid{ grid-template-columns:1fr; } }
 
-  /* ---------- CONTACT / FOOTER ---------- */
-  .contact{ text-align: left; }
-  .contact h2{ font-size: clamp(2rem, 5vw, 3.4rem); max-width: 14ch; }
-  .contact-row{ display:flex; flex-wrap:wrap; gap: 40px; margin-top: 44px; }
-  .contact-item .k{ font-family: var(--font-mono); font-size: 11px; color: var(--text-faint); margin-bottom: 6px; }
-  .contact-item .v{ font-size: 16px; color: var(--text); border-bottom: 1px solid transparent; }
-  .contact-item a.v:hover{ border-color: var(--accent); color: var(--accent); }
+  /* ---------- CONTACT ---------- */
+  .contact-card{ background: var(--glass); border:1px solid var(--glass-border); border-radius: 28px; padding: clamp(36px,6vw,70px); text-align:center; }
+  .contact-card h2{ font-size: clamp(2rem,5vw,3.2rem); max-width:16ch; margin:0 auto 20px; }
+  .contact-card p{ color: var(--text-dim); font-size:16px; max-width:46ch; margin:0 auto 34px; }
+  .contact-links{ display:flex; flex-wrap:wrap; justify-content:center; gap:14px; }
 
-  footer{ border-top: 1px solid var(--border-soft); padding: 28px 0; }
-  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
+  footer{ padding: 40px 0; }
+  .footer-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; color: var(--text-faint); }
 
-  @media (max-width: 640px){
+  @media (max-width:640px){
     nav.links, .nav-cta{ display:none; }
-    .wrap{ padding: 0 20px; }
+    .wrap{ padding:0 20px; }
+    .stat-strip{ gap:32px; }
   }
 </style>
 </head>
 <body>
 
+<div class="blob blob-a" id="blobA"></div>
+<div class="blob blob-b" id="blobB"></div>
+
 <header class="nav">
   <div class="nav-inner">
-    <a href="#top" class="brand"><span class="dot"></span>OUCHAALI // SOUFYANE</a>
+    <a href="#top" class="brand"><span class="mark">OS</span>Ouchaali Soufyane</a>
     <nav class="links">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
@@ -273,26 +227,19 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="wrap">
-      <div class="hero-frame">
-        <div class="scan-line"></div>
-        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-
-        <div class="hero-role">Delivery AI Software Engineer — Full-Stack &amp; Cloud</div>
-        <h1>Ouchaali<br>Soufyane</h1>
-        <p class="lede">I build and ship AI-driven systems end to end — from computer-vision models running on industrial sites, to the cloud infrastructure, IoT networks, and full-stack apps that put them in front of real users.</p>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="#work">View selected work</a>
-          <a class="btn ghost" href="Ouchaali_Soufyane_Resume.pdf" download>Download résumé</a>
-          <a class="btn ghost" href="mailto:ouchaali.soufyane@gmail.com">Contact</a>
-        </div>
-
-        <div class="readout">
-          <span><b>Location</b> Casablanca, MA — 33.57°N 7.59°W</span>
-          <span><b>Status</b> Open to opportunities</span>
-          <span><b>Focus</b> Computer vision · Cloud infra · Full-stack</span>
-        </div>
+    <canvas id="particles"></canvas>
+    <div class="wrap hero-inner">
+      <div class="kicker">AI &amp; Cloud Software Engineer</div>
+      <h1>I turn AI models and<br>infrastructure into <span class="grad-text">systems people rely on.</span></h1>
+      <p class="lede">Based in Casablanca, I build computer-vision systems, IoT networks, and cloud platforms end to end — from the sensor or the model, through the pipeline, to the dashboard someone actually checks every morning.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#work">See selected work</a>
+        <a class="btn ghost" href="Ouchaali_Soufyane_Resume.pdf" download>Download résumé</a>
+      </div>
+      <div class="stat-strip">
+        <div><div class="stat-num" data-count="4">0</div><div class="stat-label">Years building production systems</div></div>
+        <div><div class="stat-num" data-count="5">0</div><div class="stat-label">Roles across industry, energy &amp; cloud</div></div>
+        <div><div class="stat-num" data-count="5">0</div><div class="stat-label">Microsoft certifications in progress</div></div>
       </div>
     </div>
   </section>
@@ -300,223 +247,198 @@
   <!-- ABOUT -->
   <section class="section" id="about">
     <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="section-tag">01 — About</div>
-          <h2>Systems, not just models</h2>
-        </div>
-        <div class="section-note">A Master's in AI &amp; Data Science, applied across five roles spanning industrial vision, IoT, cloud infrastructure, and BI.</div>
+      <div class="section-head reveal">
+        <div class="kicker">About</div>
+        <h2>Systems, not just models</h2>
       </div>
-
       <div class="about-grid">
-        <div>
-          <p>I'm a software engineer based in Casablanca, currently working with the <strong>Nutanix Cloud Platform</strong> as a Cloud &amp; System Administrator at DXC Technology. My work sits at the join between machine learning and production infrastructure: I've shipped a <strong>real-time worker-safety detection system</strong> combining YOLOv8 and ByteTrack, deployed <strong>industrial IoT networks</strong> over LoRaWAN and Modbus, and built the SAP-to-Power-BI pipelines an operations team relies on for forecasting.</p>
-          <p>What I care about is the part most demos skip — getting a model, a sensor network, or a cluster to run reliably, securely, and fast, in front of real operators. I work comfortably from the hardware layer (IoT gateways, Nutanix clusters) up through the data layer (Python, SQL) to the interface people actually touch (React, Power BI, Grafana).</p>
+        <div class="reveal">
+          <p>I'm a software engineer working across AI, IoT, and cloud infrastructure. Right now I'm operating the <strong>Nutanix Cloud Platform</strong> at DXC Technology, handling cluster deployment, storage, disaster recovery, and governance for a hybrid environment. Before that, I built a <strong>real-time worker-safety detection system</strong> combining YOLOv8 and ByteTrack for OCP Group, and deployed an <strong>industrial IoT network</strong> over LoRaWAN and Modbus for a client in Casablanca.</p>
+          <p>What connects these roles is the part most demos skip: getting a model, a sensor network, or a cluster to run reliably, securely, and fast — in front of people who depend on it. I move comfortably from the hardware and protocol layer up through data pipelines to the interface someone actually opens each day.</p>
         </div>
-        <div class="stat-list">
-          <div class="stat-row"><span class="k">Years shipping production systems</span><span class="v">2022 — present</span></div>
-          <div class="stat-row"><span class="k">Current focus</span><span class="v">Nutanix hybrid cloud</span></div>
-          <div class="stat-row"><span class="k">Vision system in production</span><span class="v">YOLOv8 + ByteTrack</span></div>
-          <div class="stat-row"><span class="k">IoT protocols deployed</span><span class="v">Modbus · LoRaWAN · TCP/IP</span></div>
-          <div class="stat-row"><span class="k">Certifications in progress</span><span class="v">AZ-900 · AZ-104 · DP-900 · AI-900 · SC-900</span></div>
-          <div class="stat-row"><span class="k">Languages spoken</span><span class="v">AR · FR · EN</span></div>
+        <div class="focus-card reveal">
+          <h3>Where I've focused</h3>
+          <div class="focus-row"><span class="k">Current role</span><span class="v">Cloud &amp; System Admin, DXC</span></div>
+          <div class="focus-row"><span class="k">Vision system shipped</span><span class="v">YOLOv8 + ByteTrack</span></div>
+          <div class="focus-row"><span class="k">IoT protocols deployed</span><span class="v">Modbus, LoRaWAN, TCP/IP</span></div>
+          <div class="focus-row"><span class="k">Languages spoken</span><span class="v">Arabic, French, English</span></div>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <span>Python</span><span>YOLOv8</span><span>ByteTrack</span><span>React</span><span>Azure</span><span>Nutanix</span><span>Kubernetes</span><span>LoRaWAN</span><span>Grafana</span><span>Power BI</span><span>SQL Server</span><span>Docker</span>
+      <span>Python</span><span>YOLOv8</span><span>ByteTrack</span><span>React</span><span>Azure</span><span>Nutanix</span><span>Kubernetes</span><span>LoRaWAN</span><span>Grafana</span><span>Power BI</span><span>SQL Server</span><span>Docker</span>
+    </div>
+  </div>
 
   <!-- EXPERIENCE -->
   <section class="section" id="experience">
     <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="section-tag">02 — Experience</div>
-          <h2>Where I've built</h2>
-        </div>
-        <div class="section-note">Five roles, one throughline: taking AI, cloud, and IoT systems from prototype to production.</div>
+      <div class="section-head reveal">
+        <div class="kicker">Experience</div>
+        <h2>Five roles, one throughline</h2>
+        <p>Drag, swipe, or use the arrows — each card is a role, chronological from most recent.</p>
       </div>
 
-      <div class="log">
+      <div class="carousel-wrap reveal">
+        <div class="carousel-controls">
+          <div class="carousel-dots" id="expDots"></div>
+          <div class="arrow-group">
+            <button class="arrow-btn" id="expPrev" aria-label="Previous">‹</button>
+            <button class="arrow-btn" id="expNext" aria-label="Next">›</button>
+          </div>
+        </div>
+        <div class="carousel" id="expCarousel">
 
-        <!-- DXC -->
-        <div class="log-entry">
-          <div class="log-time">Feb 2026 — Aug 2026<span class="tag-type">Contract</span></div>
-          <div class="log-body">
+          <div class="exp-card">
+            <div class="exp-top">
+              <div class="exp-badge">DX</div>
+              <div class="exp-dates">Feb 2026 – Aug 2026<br>Contract</div>
+            </div>
             <h3>Cloud &amp; System Administrator</h3>
-            <span class="log-role">DXC Technology · Rabat · Hybrid</span>
-            <p class="log-summary">Worked extensively with the Nutanix Cloud Platform (NCP-MCI Professional track), covering core infrastructure through advanced enterprise features for a hybrid cloud environment.</p>
+            <span class="exp-role">DXC Technology · Rabat · Hybrid</span>
+            <p class="summary">Operating the Nutanix Cloud Platform across core infrastructure and enterprise features for a hybrid cloud environment.</p>
             <ul>
-              <li><strong>Cluster deployment:</strong> designed, implemented, and optimized Nutanix clusters for scalable, resilient infrastructure.</li>
-              <li><strong>Storage management:</strong> managed storage pools, containers, and volumes to ensure high performance and availability.</li>
-              <li><strong>RBAC &amp; security:</strong> configured role-based access control and governance policies to enforce compliance across multi-tenant environments.</li>
-              <li><strong>Disaster recovery:</strong> implemented DR strategies, failover planning, and availability-zone configurations to maintain business continuity.</li>
-              <li><strong>Networking &amp; virtualization:</strong> configured AHV networking, managed VMs, and integrated with external hypervisors.</li>
-              <li><strong>Data protection:</strong> used Nutanix native tooling for snapshots, replication, and backup of critical workloads.</li>
-              <li><strong>Monitoring:</strong> used Prism Central for proactive monitoring, performance tuning, and issue resolution.</li>
-              <li><strong>Automation:</strong> applied governance frameworks and automation workflows to reduce operational overhead, while exploring hybrid cloud integration for seamless workload mobility.</li>
+              <li><strong>Cluster deployment:</strong> designed and optimized Nutanix clusters for scalable, resilient infrastructure.</li>
+              <li><strong>RBAC &amp; DR:</strong> configured governance policies and disaster-recovery/failover strategies for compliance and continuity.</li>
+              <li><strong>Monitoring:</strong> used Prism Central for proactive monitoring and automation to reduce operational overhead.</li>
             </ul>
-            <div class="skill-pills"><span class="skill-pill">Nutanix</span><span class="skill-pill">Cloud computing</span><span class="skill-pill">RBAC</span><span class="skill-pill">Disaster recovery</span><span class="skill-pill">AHV</span><span class="skill-pill">Prism Central</span></div>
+            <div class="pill-row"><span class="pill">Nutanix</span><span class="pill">AHV</span><span class="pill">RBAC</span><span class="pill">Disaster recovery</span></div>
           </div>
-        </div>
 
-        <!-- Jobintech -->
-        <div class="log-entry">
-          <div class="log-time">Oct 2025 — Jan 2026<span class="tag-type">Apprenticeship</span></div>
-          <div class="log-body">
+          <div class="exp-card">
+            <div class="exp-top">
+              <div class="exp-badge">JT</div>
+              <div class="exp-dates">Oct 2025 – Jan 2026<br>Apprenticeship</div>
+            </div>
             <h3>Cloud Computing Azure</h3>
-            <span class="log-role">Jobintech · Université Internationale Averroès, Casablanca · On-site</span>
-            <p class="log-summary">Intensive Cloud &amp; Azure bootcamp building foundations across cloud computing, data, AI, DevOps, and Microsoft ecosystem administration — combining theory with hands-on labs and real-world team challenges.</p>
-            <div class="log-sub">Key learning areas</div>
+            <span class="exp-role">Jobintech · Casablanca</span>
+            <p class="summary">Intensive Azure bootcamp covering cloud, data, AI, and DevOps foundations through hands-on labs and team challenges.</p>
             <ul>
-              <li><strong>Windows Server &amp; virtualization:</strong> Active Directory, Group Policy, monitoring tools.</li>
-              <li><strong>Azure fundamentals (AZ-900):</strong> cloud concepts, Azure architecture, governance.</li>
-              <li><strong>Azure administration (AZ-104):</strong> virtual machines, storage, networking, identity &amp; compliance.</li>
-              <li><strong>Microsoft 365 administration:</strong> licensing, user/group management, security.</li>
-              <li><strong>Data fundamentals (DP-900):</strong> relational &amp; non-relational data, analytics in Azure.</li>
-              <li><strong>AI fundamentals (AI-900):</strong> machine learning basics, computer vision, and NLP workloads on Azure.</li>
-              <li><strong>Security &amp; compliance (SC-900):</strong> identity, access management, Microsoft security solutions.</li>
-              <li><strong>DevOps foundations:</strong> CI/CD pipelines, infrastructure automation, monitoring, team collaboration.</li>
-              <li><strong>Azure challenges:</strong> solved real-world cloud problems through team-based projects, preparing for the AZ-900, AZ-104, DP-900, AI-900, and SC-900 certifications.</li>
+              <li><strong>Administration:</strong> AZ-104 virtual machines, storage, networking, identity, and Windows Server / Active Directory.</li>
+              <li><strong>Data &amp; AI:</strong> DP-900 data fundamentals and AI-900 machine learning, vision, and NLP workloads on Azure.</li>
+              <li><strong>Team challenges:</strong> solved real-world cloud problems while preparing for five Microsoft certifications.</li>
             </ul>
+            <div class="pill-row"><span class="pill">Azure</span><span class="pill">Active Directory</span><span class="pill">DevOps</span></div>
           </div>
-        </div>
 
-        <!-- IITS -->
-        <div class="log-entry">
-          <div class="log-time">Feb 2025 — Jul 2025<span class="tag-type">Graduation internship</span></div>
-          <div class="log-body">
+          <div class="exp-card">
+            <div class="exp-top">
+              <div class="exp-badge">IT</div>
+              <div class="exp-dates">Feb 2025 – Jul 2025<br>Graduation internship</div>
+            </div>
             <h3>Graduation Internship</h3>
-            <span class="log-role">IITS International IT Services · Prefecture of Casablanca · On-site</span>
-            <p class="log-summary">Six-month internship spanning two tracks: a multilingual client-facing web platform, and the installation and configuration of an industrial IoT monitoring network across two communication architectures.</p>
-            <div class="log-sub">Web development</div>
+            <span class="exp-role">IITS International IT Services · Casablanca</span>
+            <p class="summary">Two tracks: a multilingual client site with embedded payments, and an industrial IoT monitoring network.</p>
             <ul>
-              <li>Designed and developed a responsive, multilingual landing page (French / English / Arabic).</li>
-              <li>Integrated a secure payment module using the <strong>CMI API</strong>.</li>
-              <li>Contributed to a user-friendly UI for real-time data display.</li>
+              <li><strong>Web:</strong> built a responsive FR/EN/AR landing page with a secure CMI payment integration.</li>
+              <li><strong>IoT:</strong> deployed an Acrel energy meter and Dragino weather station over Modbus/LoRaWAN (via The Things Network) and Modbus/TCP-IP.</li>
+              <li><strong>Visibility:</strong> centralized data with Python and visualized it live via SynergyIoT, Prometheus, and Grafana.</li>
             </ul>
-            <div class="log-sub">IoT &amp; monitoring</div>
-            <ul>
-              <li>Configured and deployed IoT devices: an <strong>Acrel ADW300</strong> energy meter and a <strong>Dragino</strong> weather station.</li>
-              <li>Implemented two communication architectures: <strong>Modbus → LoRaWAN</strong> (via The Things Network) and <strong>Modbus → TCP/IP</strong> with direct database storage.</li>
-              <li>Developed Python scripts for data collection, processing, and centralization.</li>
-              <li>Enabled real-time data visualization using <strong>SynergyIoT</strong>, plus <strong>Prometheus</strong> metric monitoring and interactive <strong>Grafana</strong> dashboards.</li>
-            </ul>
-            <div class="skill-pills"><span class="skill-pill">LoRaWAN</span><span class="skill-pill">The Things Network</span><span class="skill-pill">Modbus / TCP-IP</span><span class="skill-pill">CMI API</span><span class="skill-pill">SynergyIoT</span><span class="skill-pill">Prometheus</span><span class="skill-pill">Grafana</span><span class="skill-pill">Data processing</span></div>
+            <div class="pill-row"><span class="pill">LoRaWAN</span><span class="pill">CMI API</span><span class="pill">Grafana</span><span class="pill">SynergyIoT</span></div>
           </div>
-        </div>
 
-        <!-- OCP -->
-        <div class="log-entry">
-          <div class="log-time">Jul 2024 — Sep 2024<span class="tag-type">Internship</span></div>
-          <div class="log-body">
+          <div class="exp-card">
+            <div class="exp-top">
+              <div class="exp-badge">OCP</div>
+              <div class="exp-dates">Jul 2024 – Sep 2024<br>Internship</div>
+            </div>
             <h3>Machine Learning Intern</h3>
-            <span class="log-role">OCP Group · Laâyoune · Hybrid</span>
-            <p class="log-summary">Built a machine-learning system to detect construction workers missing helmets or reflective jackets in video feeds, automating safety supervision that was previously manual.</p>
+            <span class="exp-role">OCP Group · Laâyoune</span>
+            <p class="summary">Built a computer-vision system to detect construction workers missing helmets or reflective jackets on video feeds.</p>
             <ul>
-              <li><strong>Data collection:</strong> sourced a helmet/jacket safety-equipment dataset from Kaggle.</li>
-              <li><strong>Annotation:</strong> labeled images in YOLO format (class + bounding box).</li>
-              <li><strong>Data organization:</strong> structured folders for training, validation, and testing.</li>
-              <li><strong>Model training:</strong> trained a YOLOv8 model on the dataset using Google Colab.</li>
-              <li><strong>Testing:</strong> validated the trained model against real video footage of site violations.</li>
-              <li><strong>Tracking &amp; detection:</strong> integrated <strong>ByteTrack</strong> for person tracking, with custom logic drawing green or red boxes based on compliance.</li>
-              <li><strong>Alerting:</strong> captured screenshots of violations and sent automated email alerts to the site monitor.</li>
-              <li><strong>Tuning:</strong> refined the system for accuracy, avoided re-flagging the same person twice, and validated across multiple videos.</li>
+              <li><strong>Detection:</strong> trained a YOLOv8 model on an annotated Kaggle safety-equipment dataset.</li>
+              <li><strong>Tracking:</strong> integrated ByteTrack to keep identities stable, drawing green/red boxes by compliance.</li>
+              <li><strong>Alerting:</strong> captured violation screenshots and emailed site supervisors automatically.</li>
             </ul>
-            <div class="skill-pills"><span class="skill-pill">Object detection</span><span class="skill-pill">CNNs</span><span class="skill-pill">YOLOv8</span><span class="skill-pill">ByteTrack</span></div>
+            <div class="pill-row"><span class="pill">YOLOv8</span><span class="pill">ByteTrack</span><span class="pill">Computer vision</span></div>
           </div>
-        </div>
 
-        <!-- ONEE -->
-        <div class="log-entry">
-          <div class="log-time">Apr 2022 — Jun 2022<span class="tag-type">Internship</span></div>
-          <div class="log-body">
-            <h3>Information Technology Business Analyst</h3>
-            <span class="log-role">ONEE — Branche Eau · Morocco</span>
-            <p class="log-summary">Built a forecasting system for ONEE Rabat's water branch to calculate and report technical ratios and expense/revenue line items.</p>
+          <div class="exp-card">
+            <div class="exp-top">
+              <div class="exp-badge">ON</div>
+              <div class="exp-dates">Apr 2022 – Jun 2022<br>Internship</div>
+            </div>
+            <h3>IT Business Analyst</h3>
+            <span class="exp-role">ONEE — Branche Eau · Morocco</span>
+            <p class="summary">Built a forecasting system for technical ratios and cost/revenue line items for ONEE Rabat's water branch.</p>
             <ul>
-              <li><strong>System design:</strong> set up a calculation and reporting system for forecasting technical ratios and cost/revenue categories.</li>
-              <li><strong>Data extraction:</strong> pulled source data directly from SAP.</li>
-              <li><strong>Calculation engine:</strong> implemented the forecasting logic in Python using Jupyter notebooks.</li>
-              <li><strong>Reporting:</strong> delivered the results as Power BI reports for stakeholder review.</li>
+              <li><strong>Extraction:</strong> pulled source data directly from SAP.</li>
+              <li><strong>Calculation:</strong> implemented forecasting logic in Python via Jupyter notebooks.</li>
+              <li><strong>Reporting:</strong> delivered results as Power BI reports for stakeholder review.</li>
             </ul>
-            <div class="skill-pills"><span class="skill-pill">SQL</span><span class="skill-pill">Microsoft SQL Server</span><span class="skill-pill">Python</span><span class="skill-pill">Power BI</span></div>
+            <div class="pill-row"><span class="pill">SQL Server</span><span class="pill">Python</span><span class="pill">Power BI</span></div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS / WORK -->
+  <!-- PROJECTS -->
   <section class="section" id="work">
     <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="section-tag">03 — Selected work</div>
-          <h2>Systems I've shipped</h2>
-        </div>
-        <div class="section-note">Drawn from my professional roles — each one taken from prototype to running in production.</div>
+      <div class="section-head reveal">
+        <div class="kicker">Selected work</div>
+        <h2>Systems I've shipped</h2>
+        <p>Each one taken from prototype to something running in production.</p>
       </div>
 
-      <div class="grid-projects">
-        <div class="project">
-          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-          <div class="project-top">
+      <div class="carousel-wrap reveal">
+        <div class="carousel-controls">
+          <div class="carousel-dots" id="workDots"></div>
+          <div class="arrow-group">
+            <button class="arrow-btn" id="workPrev" aria-label="Previous">‹</button>
+            <button class="arrow-btn" id="workNext" aria-label="Next">›</button>
+          </div>
+        </div>
+        <div class="carousel" id="workCarousel">
+
+          <div class="proj-card"><div class="proj-inner">
+            <div class="proj-tag">OCP Group</div>
             <h3>Construction-site safety detection</h3>
-            <span class="confidence">OCP GROUP</span>
-          </div>
-          <p>End-to-end computer-vision pipeline that flags workers missing helmets or reflective jackets. YOLOv8 handles detection, ByteTrack keeps identities stable across frames, and a custom alerting layer captures a screenshot and emails site supervisors the moment a violation is confirmed — without re-flagging the same person twice.</p>
-          <div class="tags"><span class="tag">YOLOv8</span><span class="tag">ByteTrack</span><span class="tag">Python</span><span class="tag">Google Colab</span><span class="tag">Email alerting</span></div>
-        </div>
+            <p>YOLOv8 detection plus ByteTrack for stable identity tracking, with automated screenshot-and-email alerts the moment a violation is confirmed — without re-flagging the same worker twice.</p>
+            <div class="pill-row"><span class="pill">YOLOv8</span><span class="pill">ByteTrack</span><span class="pill">Python</span></div>
+          </div></div>
 
-        <div class="project">
-          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-          <div class="project-top">
+          <div class="proj-card"><div class="proj-inner">
+            <div class="proj-tag">IITS</div>
             <h3>Industrial IoT monitoring network</h3>
-            <span class="confidence">IITS</span>
-          </div>
-          <p>Deployed and wired up an Acrel energy meter and a Dragino weather station across two parallel architectures — Modbus over LoRaWAN via The Things Network, and Modbus over TCP/IP into a database — then built the Python layer that collects, centralizes, and surfaces that data live through SynergyIoT, Prometheus, and Grafana.</p>
-          <div class="tags"><span class="tag">LoRaWAN</span><span class="tag">Modbus</span><span class="tag">The Things Network</span><span class="tag">Grafana</span><span class="tag">Prometheus</span></div>
-        </div>
+            <p>An Acrel energy meter and Dragino weather station wired across two architectures — Modbus/LoRaWAN via The Things Network, and Modbus/TCP-IP — feeding live Grafana dashboards.</p>
+            <div class="pill-row"><span class="pill">LoRaWAN</span><span class="pill">Modbus</span><span class="pill">Grafana</span></div>
+          </div></div>
 
-        <div class="project">
-          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-          <div class="project-top">
+          <div class="proj-card"><div class="proj-inner">
+            <div class="proj-tag">IITS</div>
             <h3>Multilingual site with embedded payments</h3>
-            <span class="confidence">IITS</span>
-          </div>
-          <p>Responsive landing page shipped in French, English, and Arabic, with a secure checkout flow built on the CMI payment API and a UI designed to surface real-time data clearly to non-technical visitors.</p>
-          <div class="tags"><span class="tag">React</span><span class="tag">i18n</span><span class="tag">CMI API</span><span class="tag">Responsive UI</span></div>
-        </div>
+            <p>A responsive landing page in French, English, and Arabic with a secure checkout built on the CMI payment API and a UI designed for clear real-time data display.</p>
+            <div class="pill-row"><span class="pill">React</span><span class="pill">CMI API</span><span class="pill">i18n</span></div>
+          </div></div>
 
-        <div class="project">
-          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-          <div class="project-top">
+          <div class="proj-card"><div class="proj-inner">
+            <div class="proj-tag">DXC Technology</div>
             <h3>Nutanix hybrid cloud operations</h3>
-            <span class="confidence">DXC TECHNOLOGY</span>
-          </div>
-          <p>Deployed and operated Nutanix clusters end to end — storage pools, AHV networking, RBAC and governance, disaster-recovery and availability-zone failover — while using Prism Central to monitor performance and automate routine operations across a hybrid environment.</p>
-          <div class="tags"><span class="tag">Nutanix</span><span class="tag">AHV</span><span class="tag">Disaster recovery</span><span class="tag">Prism Central</span></div>
-        </div>
+            <p>End-to-end cluster operations — storage, AHV networking, RBAC and governance, disaster recovery and failover — monitored and automated through Prism Central.</p>
+            <div class="pill-row"><span class="pill">Nutanix</span><span class="pill">AHV</span><span class="pill">DR</span></div>
+          </div></div>
 
-        <div class="project">
-          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-          <div class="project-top">
-            <h3>SAP-to-Power BI forecasting system</h3>
-            <span class="confidence">ONEE BRANCHE EAU</span>
-          </div>
-          <p>Extracted operational data directly from SAP, built the forecasting logic for technical ratios and cost/revenue line items in Python and Jupyter, and delivered the output as Power BI reports used for planning decisions.</p>
-          <div class="tags"><span class="tag">SAP</span><span class="tag">SQL Server</span><span class="tag">Python</span><span class="tag">Power BI</span></div>
-        </div>
+          <div class="proj-card"><div class="proj-inner">
+            <div class="proj-tag">ONEE Branche Eau</div>
+            <h3>SAP-to-Power BI forecasting</h3>
+            <p>Data extracted directly from SAP, forecasting logic built in Python and Jupyter, delivered as Power BI reports used for real planning decisions.</p>
+            <div class="pill-row"><span class="pill">SAP</span><span class="pill">Python</span><span class="pill">Power BI</span></div>
+          </div></div>
 
-        <div class="project">
-          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-          <div class="project-top">
+          <div class="proj-card"><div class="proj-inner">
+            <div class="proj-tag">Jobintech</div>
             <h3>Cloud &amp; Azure bootcamp challenges</h3>
-            <span class="confidence">JOBINTECH</span>
-          </div>
-          <p>Team-based Azure challenges covering virtual machines, storage, networking, identity, and DevOps automation — hands-on labs built to mirror real infrastructure problems, in preparation for five Microsoft certifications.</p>
-          <div class="tags"><span class="tag">Azure</span><span class="tag">Active Directory</span><span class="tag">DevOps</span><span class="tag">M365 admin</span></div>
+            <p>Team-based Azure challenges spanning VMs, storage, networking, identity, and DevOps automation — hands-on labs mirroring real infrastructure problems.</p>
+            <div class="pill-row"><span class="pill">Azure</span><span class="pill">DevOps</span><span class="pill">M365</span></div>
+          </div></div>
+
         </div>
       </div>
     </div>
@@ -525,65 +447,34 @@
   <!-- SKILLS -->
   <section class="section" id="skills">
     <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="section-tag">04 — Stack</div>
-          <h2>Tools I reach for</h2>
-        </div>
+      <div class="section-head reveal">
+        <div class="kicker">Stack</div>
+        <h2>Tools I reach for</h2>
       </div>
-
       <div class="skills-grid">
-        <div class="skill-cluster">
+        <div class="skill-card reveal">
           <h3>Backend &amp; AI</h3>
-          <ul>
-            <li><span class="name">Python</span> FastAPI, Flask</li>
-            <li><span class="name">Node.js</span> REST APIs</li>
-            <li><span class="name">Testing</span> PyTest, Jest</li>
-            <li><span class="name">Practice</span> Clean code, OOP</li>
-          </ul>
+          <div class="skill-tags"><span>Python</span><span>FastAPI</span><span>Flask</span><span>Node.js</span><span>PyTest</span><span>Clean code</span></div>
         </div>
-        <div class="skill-cluster">
+        <div class="skill-card reveal">
           <h3>Frontend</h3>
-          <ul>
-            <li><span class="name">React</span> TypeScript</li>
-            <li><span class="name">Core</span> HTML5, CSS3, JS</li>
-            <li><span class="name">UI kits</span> Tailwind, Material UI</li>
-            <li><span class="name">Data viz</span> D3.js</li>
-          </ul>
+          <div class="skill-tags"><span>React</span><span>TypeScript</span><span>Tailwind</span><span>Material UI</span><span>D3.js</span></div>
         </div>
-        <div class="skill-cluster">
+        <div class="skill-card reveal">
           <h3>Cloud &amp; infrastructure</h3>
-          <ul>
-            <li><span class="name">Azure</span> AKS, Functions</li>
-            <li><span class="name">Nutanix</span> NCP-MCI</li>
-            <li><span class="name">Infra as code</span> Terraform</li>
-            <li><span class="name">Containers</span> Docker, Kubernetes</li>
-          </ul>
+          <div class="skill-tags"><span>Azure</span><span>Nutanix</span><span>Terraform</span><span>Docker</span><span>Kubernetes</span></div>
         </div>
-        <div class="skill-cluster">
+        <div class="skill-card reveal">
           <h3>Computer vision</h3>
-          <ul>
-            <li><span class="name">Detection</span> YOLOv8, CNNs</li>
-            <li><span class="name">Tracking</span> ByteTrack</li>
-            <li><span class="name">Pipeline</span> Annotation, curation</li>
-          </ul>
+          <div class="skill-tags"><span>YOLOv8</span><span>ByteTrack</span><span>CNNs</span><span>Object detection</span></div>
         </div>
-        <div class="skill-cluster">
+        <div class="skill-card reveal">
           <h3>IoT &amp; monitoring</h3>
-          <ul>
-            <li><span class="name">Protocols</span> Modbus, LoRaWAN, TCP/IP</li>
-            <li><span class="name">Platforms</span> The Things Network, SynergyIoT</li>
-            <li><span class="name">Observability</span> Prometheus, Grafana</li>
-          </ul>
+          <div class="skill-tags"><span>Modbus</span><span>LoRaWAN</span><span>The Things Network</span><span>Prometheus</span><span>Grafana</span></div>
         </div>
-        <div class="skill-cluster">
+        <div class="skill-card reveal">
           <h3>Data</h3>
-          <ul>
-            <li><span class="name">SQL</span> Postgres, SQL Server, MySQL</li>
-            <li><span class="name">NoSQL</span> MongoDB</li>
-            <li><span class="name">BI</span> Power BI</li>
-            <li><span class="name">Source systems</span> SAP extraction</li>
-          </ul>
+          <div class="skill-tags"><span>SQL Server</span><span>Postgres</span><span>MongoDB</span><span>Power BI</span><span>SAP extraction</span></div>
         </div>
       </div>
     </div>
@@ -592,14 +483,12 @@
   <!-- CERTIFICATIONS -->
   <section class="section">
     <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="section-tag">05 — Certifications</div>
-          <h2>In progress</h2>
-        </div>
-        <div class="section-note">Pursued through the Jobintech Cloud &amp; Azure bootcamp.</div>
+      <div class="section-head reveal">
+        <div class="kicker">Certifications</div>
+        <h2>Currently in progress</h2>
+        <p>Pursued through the Jobintech Cloud &amp; Azure bootcamp.</p>
       </div>
-      <div class="cert-row">
+      <div class="cert-row reveal">
         <div class="cert"><div class="id">AZ-900</div><div class="label">Azure Fundamentals</div></div>
         <div class="cert"><div class="id">AZ-104</div><div class="label">Azure Administrator</div></div>
         <div class="cert"><div class="id">DP-900</div><div class="label">Data Fundamentals</div></div>
@@ -609,61 +498,47 @@
     </div>
   </section>
 
-  <!-- EDUCATION & LANGUAGES -->
+  <!-- EDUCATION -->
   <section class="section">
     <div class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="section-tag">06 — Education</div>
-          <h2>Background</h2>
-        </div>
+      <div class="section-head reveal">
+        <div class="kicker">Education</div>
+        <h2>Background</h2>
       </div>
-
       <div class="edu-lang">
-        <div>
+        <div class="reveal">
           <div class="edu-item">
             <div class="deg">State Engineer's Degree, Computer Science — Data &amp; AI</div>
-            <div class="school"><span>École Polytechnique d'Agadir</span><span>2023 — 2025</span></div>
+            <div class="school"><span>École Polytechnique d'Agadir</span><span>2023–2025</span></div>
           </div>
           <div class="edu-item">
             <div class="deg">License in Business Intelligence &amp; Statistics</div>
-            <div class="school"><span>École Supérieure de Technologies, Guelmim</span><span>2021 — 2022</span></div>
+            <div class="school"><span>École Supérieure de Technologies, Guelmim</span><span>2021–2022</span></div>
           </div>
           <div class="edu-item">
             <div class="deg">BTS, Information Systems Development</div>
-            <div class="school"><span>Lissane Eddine Ibn Khatib, Laâyoune</span><span>2019 — 2021</span></div>
+            <div class="school"><span>Lissane Eddine Ibn Khatib, Laâyoune</span><span>2019–2021</span></div>
           </div>
         </div>
-        <div>
-          <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">Professional — C1</span></div>
-          <div class="lang-item"><span class="lang-name">French</span><span class="lang-level">Fluent</span></div>
-          <div class="lang-item"><span class="lang-name">Arabic</span><span class="lang-level">Native</span></div>
+        <div class="reveal">
+          <div class="lang-item"><span>English</span><span class="lang-level">Professional, C1</span></div>
+          <div class="lang-item"><span>French</span><span class="lang-level">Fluent</span></div>
+          <div class="lang-item"><span>Arabic</span><span class="lang-level">Native</span></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section class="section contact" id="contact">
+  <section class="section" id="contact">
     <div class="wrap">
-      <div class="section-tag">07 — Contact</div>
-      <h2>Let's build something that ships.</h2>
-      <div class="contact-row">
-        <div class="contact-item">
-          <div class="k">Email</div>
-          <a class="v" href="mailto:ouchaali.soufyane@gmail.com">ouchaali.soufyane@gmail.com</a>
-        </div>
-        <div class="contact-item">
-          <div class="k">Phone</div>
-          <a class="v" href="tel:+212633174487">+212 633-174487</a>
-        </div>
-        <div class="contact-item">
-          <div class="k">LinkedIn</div>
-          <a class="v" href="https://www.linkedin.com/in/soufyane-ochaali01/" target="_blank" rel="noopener">View profile</a>
-        </div>
-        <div class="contact-item">
-          <div class="k">Based in</div>
-          <span class="v">Casablanca, Morocco</span>
+      <div class="contact-card reveal">
+        <h2>Let's build something<br>that ships.</h2>
+        <p>Open to new opportunities in AI, computer vision, and cloud engineering — reach out any time.</p>
+        <div class="contact-links">
+          <a class="btn primary" href="mailto:ouchaali.soufyane@gmail.com">ouchaali.soufyane@gmail.com</a>
+          <a class="btn ghost" href="tel:+212633174487">+212 633-174487</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/soufyane-ochaali01/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
     </div>
@@ -674,9 +549,152 @@
 <footer>
   <div class="wrap footer-inner">
     <span>© 2026 Ouchaali Soufyane</span>
-    <span>Built with HTML, CSS &amp; a bit of computer vision</span>
+    <span>Casablanca, Morocco</span>
   </div>
 </footer>
+
+<script>
+// ---- particle network canvas ----
+(function(){
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let w,h,particles;
+  const COUNT = 55;
+  function resize(){
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+  }
+  function init(){
+    resize();
+    particles = Array.from({length:COUNT}, () => ({
+      x: Math.random()*w, y: Math.random()*h,
+      vx: (Math.random()-0.5)*0.35, vy: (Math.random()-0.5)*0.35
+    }));
+  }
+  function step(){
+    ctx.clearRect(0,0,w,h);
+    for(const p of particles){
+      p.x += p.vx; p.y += p.vy;
+      if(p.x<0||p.x>w) p.vx*=-1;
+      if(p.y<0||p.y>h) p.vy*=-1;
+    }
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const a=particles[i], b=particles[j];
+        const d = Math.hypot(a.x-b.x, a.y-b.y);
+        if(d<130){
+          ctx.strokeStyle = `rgba(139,92,246,${(1-d/130)*0.35})`;
+          ctx.lineWidth=1;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }
+    }
+    for(const p of particles){
+      ctx.fillStyle='rgba(34,211,238,0.7)';
+      ctx.beginPath(); ctx.arc(p.x,p.y,1.6,0,Math.PI*2); ctx.fill();
+    }
+    requestAnimationFrame(step);
+  }
+  window.addEventListener('resize', resize);
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    init(); step();
+  } else {
+    resize();
+  }
+})();
+
+// ---- blob parallax ----
+(function(){
+  const a = document.getElementById('blobA');
+  const b = document.getElementById('blobB');
+  window.addEventListener('mousemove', (e)=>{
+    const x = (e.clientX/window.innerWidth - 0.5) * 40;
+    const y = (e.clientY/window.innerHeight - 0.5) * 40;
+    a.style.transform = `translate(${x}px, ${y}px)`;
+    b.style.transform = `translate(${-x}px, ${-y}px)`;
+  });
+})();
+
+// ---- scroll reveal ----
+(function(){
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  items.forEach(i=>io.observe(i));
+})();
+
+// ---- count-up stats ----
+(function(){
+  const nums = document.querySelectorAll('.stat-num');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el = e.target;
+        const target = parseInt(el.dataset.count,10);
+        let cur = 0;
+        const step = Math.max(1, Math.round(target/30));
+        const t = setInterval(()=>{
+          cur += step;
+          if(cur>=target){ cur = target; clearInterval(t); }
+          el.textContent = cur;
+        }, 40);
+        io.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  nums.forEach(n=>io.observe(n));
+})();
+
+// ---- generic carousel builder ----
+function setupCarousel(carouselId, dotsId, prevId, nextId){
+  const carousel = document.getElementById(carouselId);
+  const dotsWrap = document.getElementById(dotsId);
+  const cards = Array.from(carousel.children);
+
+  cards.forEach((_, i)=>{
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0 ? ' active' : '');
+    d.addEventListener('click', ()=> cards[i].scrollIntoView({behavior:'smooth', inline:'start', block:'nearest'}));
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      const idx = cards.indexOf(e.target);
+      if(e.isIntersecting && idx>-1){
+        dots.forEach(d=>d.classList.remove('active'));
+        dots[idx].classList.add('active');
+      }
+    });
+  }, { root: carousel, threshold: 0.6 });
+  cards.forEach(c=>io.observe(c));
+
+  document.getElementById(prevId).addEventListener('click', ()=>{
+    carousel.scrollBy({ left: -(cards[0].offsetWidth+22), behavior:'smooth' });
+  });
+  document.getElementById(nextId).addEventListener('click', ()=>{
+    carousel.scrollBy({ left: (cards[0].offsetWidth+22), behavior:'smooth' });
+  });
+
+  // drag to scroll (desktop)
+  let isDown=false, startX, scrollLeft;
+  carousel.addEventListener('pointerdown', (e)=>{
+    isDown = true; carousel.classList.add('dragging');
+    startX = e.pageX; scrollLeft = carousel.scrollLeft;
+  });
+  window.addEventListener('pointerup', ()=>{ isDown=false; carousel.classList.remove('dragging'); });
+  carousel.addEventListener('pointerleave', ()=>{ isDown=false; carousel.classList.remove('dragging'); });
+  carousel.addEventListener('pointermove', (e)=>{
+    if(!isDown) return;
+    const dx = e.pageX - startX;
+    carousel.scrollLeft = scrollLeft - dx;
+  });
+}
+setupCarousel('expCarousel','expDots','expPrev','expNext');
+setupCarousel('workCarousel','workDots','workPrev','workNext');
+</script>
 
 </body>
 </html>
