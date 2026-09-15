@@ -147,7 +147,7 @@
   .exp-card{
     scroll-snap-align: start; flex: 0 0 auto; width: min(560px, 84vw);
     background: var(--glass); border:1px solid var(--glass-border); border-radius: 22px; padding: 32px;
-    display:flex; flex-direction:column;
+    display:flex; flex-direction:column; transition: transform .15s ease;
   }
   .exp-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:14px; margin-bottom:18px; }
   .exp-badge{ width:44px; height:44px; border-radius:12px; background: var(--grad); flex:0 0 auto; display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-weight:700; color:#0E0F1F; font-size:15px; }
@@ -166,11 +166,29 @@
   .proj-card{
     scroll-snap-align: start; flex: 0 0 auto; width: min(400px, 80vw);
     border-radius: 22px; padding: 2px; background: linear-gradient(140deg, rgba(139,92,246,0.35), rgba(34,211,238,0.15));
+    transition: transform .15s ease;
   }
   .proj-inner{ background: #12132A; border-radius:20px; padding:28px; height:100%; display:flex; flex-direction:column; transition: transform .25s ease; }
   .proj-tag{ font-size:11.5px; color: var(--cyan); font-weight:600; margin-bottom:14px; }
   .proj-card h3{ font-size:18px; margin-bottom:10px; }
   .proj-card p{ color: var(--text-dim); font-size:14px; margin:0 0 18px; flex:1; }
+
+  /* ---------- RAG SPOTLIGHT CARDS ---------- */
+  .rag-band{ background: var(--bg-soft); border-top:1px solid var(--glass-border); border-bottom:1px solid var(--glass-border); }
+  .rag-intro{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; margin-bottom:44px; }
+  .rag-intro-pills{ display:flex; flex-wrap:wrap; gap:8px; max-width:360px; justify-content:flex-end; }
+  .rag-card{
+    scroll-snap-align: start; flex: 0 0 auto; width: min(430px, 84vw);
+    border-radius: 22px; padding: 2px;
+    background: linear-gradient(140deg, rgba(244,114,182,0.45), rgba(139,92,246,0.25));
+    transition: transform .15s ease;
+  }
+  .rag-inner{ background:#15132A; border-radius:20px; padding:30px; height:100%; display:flex; flex-direction:column; }
+  .rag-step{ display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+  .rag-num{ font-family: var(--font-display); font-size:13px; font-weight:700; color:#0E0F1F; background: linear-gradient(120deg, var(--pink), var(--violet)); width:32px; height:32px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+  .rag-layer{ font-size:12px; color: var(--pink); font-weight:600; }
+  .rag-card h3{ font-size:18.5px; margin-bottom:12px; }
+  .rag-card p{ color: var(--text-dim); font-size:14.5px; margin:0 0 18px; flex:1; }
 
   /* ---------- SKILLS ---------- */
   .skills-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; }
@@ -219,6 +237,18 @@
     .wrap{ padding:0 20px; }
     .stat-strip{ gap:32px; }
   }
+
+  /* ---------- BACK TO TOP ---------- */
+  .to-top{
+    position: fixed; right: 26px; bottom: 26px; z-index: 90;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--grad); color:#0E0F1F; border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700;
+    opacity:0; transform: translateY(12px); pointer-events:none;
+    transition: opacity .25s ease, transform .25s ease, box-shadow .2s ease;
+  }
+  .to-top.visible{ opacity:1; transform:none; pointer-events:auto; }
+  .to-top:hover{ box-shadow: 0 10px 26px -6px var(--violet); }
 </style>
 </head>
 <body>
@@ -232,6 +262,7 @@
     <nav class="links">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
+      <a href="#rag">RAG chatbot</a>
       <a href="#work">Work</a>
       <a href="#skills">Skills</a>
     </nav>
@@ -251,7 +282,7 @@
         <p class="lede">Based in Casablanca, I build computer-vision systems, IoT networks, and cloud platforms end to end — from the sensor or the model, through the pipeline, to the dashboard someone actually checks every morning.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#work">See selected work</a>
-          <a class="btn ghost" href="ouchaali soufyane.pdf" download>Download résumé</a>
+          <a class="btn ghost" href="Ouchaali_Soufyane_Resume.pdf" download>Download résumé</a>
         </div>
         <div class="stat-strip">
           <div><div class="stat-num" data-count="5">0</div><div class="stat-label">Hands-on roles since 2022</div></div>
@@ -294,8 +325,8 @@
 
   <div class="marquee-wrap">
     <div class="marquee">
-      <span>Python</span><span>YOLOv8</span><span>ByteTrack</span><span>React</span><span>Azure</span><span>Nutanix</span><span>Kubernetes</span><span>LoRaWAN</span><span>Grafana</span><span>Power BI</span><span>SQL Server</span><span>Docker</span>
-      <span>Python</span><span>YOLOv8</span><span>ByteTrack</span><span>React</span><span>Azure</span><span>Nutanix</span><span>Kubernetes</span><span>LoRaWAN</span><span>Grafana</span><span>Power BI</span><span>SQL Server</span><span>Docker</span>
+      <span>Python</span><span>Azure OpenAI</span><span>LangChain</span><span>Pinecone</span><span>YOLOv8</span><span>ByteTrack</span><span>React</span><span>Azure</span><span>Nutanix</span><span>Kubernetes</span><span>Docker</span><span>LoRaWAN</span><span>Grafana</span><span>Power BI</span><span>SQL Server</span>
+      <span>Python</span><span>Azure OpenAI</span><span>LangChain</span><span>Pinecone</span><span>YOLOv8</span><span>ByteTrack</span><span>React</span><span>Azure</span><span>Nutanix</span><span>Kubernetes</span><span>Docker</span><span>LoRaWAN</span><span>Grafana</span><span>Power BI</span><span>SQL Server</span>
     </div>
   </div>
 
@@ -325,13 +356,14 @@
             </div>
             <h3>Cloud &amp; System Administrator</h3>
             <span class="exp-role">DXC Technology · Rabat · Hybrid</span>
-            <p class="summary">Operating the Nutanix Cloud Platform across core infrastructure and enterprise features for a hybrid cloud environment.</p>
+            <p class="summary">Operating the Nutanix Cloud Platform across core infrastructure and enterprise features, while also shipping a production RAG chatbot on Azure.</p>
             <ul>
               <li><strong>Cluster deployment:</strong> designed and optimized Nutanix clusters for scalable, resilient infrastructure.</li>
               <li><strong>RBAC &amp; DR:</strong> configured governance policies and disaster-recovery/failover strategies for compliance and continuity.</li>
-              <li><strong>Monitoring:</strong> used Prism Central for proactive monitoring and automation to reduce operational overhead.</li>
+              <li><strong>Lifecycle &amp; automation:</strong> managed the full lifecycle through Azure DevOps CI/CD and automated operational tasks with Runbooks.</li>
+              <li><strong>RAG chatbot:</strong> deployed a retrieval-augmented chatbot with Docker, Kubernetes, FastAPI, Azure OpenAI, and Pinecone.</li>
             </ul>
-            <div class="pill-row"><span class="pill">Nutanix</span><span class="pill">AHV</span><span class="pill">RBAC</span><span class="pill">Disaster recovery</span></div>
+            <div class="pill-row"><span class="pill">Nutanix</span><span class="pill">Azure DevOps</span><span class="pill">RAG</span><span class="pill">Azure OpenAI</span></div>
           </div>
 
           <div class="exp-card">
@@ -397,6 +429,63 @@
             </ul>
             <div class="pill-row"><span class="pill">SQL Server</span><span class="pill">Python</span><span class="pill">Power BI</span></div>
           </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RAG CHATBOT SPOTLIGHT -->
+  <section class="section rag-band" id="rag">
+    <div class="wrap">
+      <div class="rag-intro reveal">
+        <div class="section-head" style="margin-bottom:0;">
+          <div class="kicker" style="color:var(--pink);">Featured project</div>
+          <h2>A production RAG chatbot, end to end</h2>
+          <p>Built and deployed at DXC Technology — from vector retrieval to a live, monitored Kubernetes deployment. Drag through the stack below.</p>
+        </div>
+        <div class="rag-intro-pills">
+          <span class="pill">Azure OpenAI</span><span class="pill">LangChain</span><span class="pill">Pinecone</span><span class="pill">FastAPI</span><span class="pill">Streamlit</span><span class="pill">Kubernetes</span>
+        </div>
+      </div>
+
+      <div class="carousel-wrap reveal">
+        <div class="carousel-controls">
+          <div class="carousel-dots" id="ragDots"></div>
+          <div class="arrow-group">
+            <button class="arrow-btn" id="ragPrev" aria-label="Previous">‹</button>
+            <button class="arrow-btn" id="ragNext" aria-label="Next">›</button>
+          </div>
+        </div>
+        <div class="carousel" id="ragCarousel">
+
+          <div class="rag-card"><div class="rag-inner">
+            <div class="rag-step"><div class="rag-num">01</div><div class="rag-layer">Overview</div></div>
+            <h3>Retrieval-augmented chatbot on Azure</h3>
+            <p>A chatbot that answers questions grounded in real company documents instead of guessing — built as part of the cloud team's automation work at DXC, and taken all the way from prototype to a monitored production deployment.</p>
+            <div class="pill-row"><span class="pill">RAG</span><span class="pill">Azure</span></div>
+          </div></div>
+
+          <div class="rag-card"><div class="rag-inner">
+            <div class="rag-step"><div class="rag-num">02</div><div class="rag-layer">Retrieval &amp; generation</div></div>
+            <h3>LangChain, Pinecone &amp; Azure OpenAI</h3>
+            <p>LangChain orchestrates the pipeline: incoming questions are embedded and matched against a Pinecone vector index, and the retrieved context is passed to Azure OpenAI's GPT models to generate a grounded answer.</p>
+            <div class="pill-row"><span class="pill">LangChain</span><span class="pill">Pinecone</span><span class="pill">Azure OpenAI</span></div>
+          </div></div>
+
+          <div class="rag-card"><div class="rag-inner">
+            <div class="rag-step"><div class="rag-num">03</div><div class="rag-layer">Application layer</div></div>
+            <h3>FastAPI backend, Streamlit interface</h3>
+            <p>FastAPI exposes the RAG pipeline as a clean, documented API, while a Streamlit front end gives non-technical users a simple chat interface to query it directly.</p>
+            <div class="pill-row"><span class="pill">FastAPI</span><span class="pill">Streamlit</span><span class="pill">Python</span></div>
+          </div></div>
+
+          <div class="rag-card"><div class="rag-inner">
+            <div class="rag-step"><div class="rag-num">04</div><div class="rag-layer">Deployment &amp; DevOps</div></div>
+            <h3>Docker, Kubernetes &amp; CI/CD</h3>
+            <p>Containerized with Docker and orchestrated on Kubernetes, with the full lifecycle managed through Azure DevOps CI/CD pipelines and Runbooks handling routine automation.</p>
+            <div class="pill-row"><span class="pill">Docker</span><span class="pill">Kubernetes</span><span class="pill">Azure DevOps CI/CD</span><span class="pill">Runbooks</span></div>
+          </div></div>
 
         </div>
       </div>
@@ -482,12 +571,20 @@
           <div class="skill-tags"><span>Python</span><span>FastAPI</span><span>Flask</span><span>Node.js</span><span>PyTest</span><span>Clean code</span></div>
         </div>
         <div class="skill-card reveal">
+          <h3>Generative AI</h3>
+          <div class="skill-tags"><span>Azure OpenAI</span><span>LangChain</span><span>Pinecone</span><span>RAG pipelines</span><span>Streamlit</span></div>
+        </div>
+        <div class="skill-card reveal">
           <h3>Frontend</h3>
           <div class="skill-tags"><span>React</span><span>TypeScript</span><span>Tailwind</span><span>Material UI</span><span>D3.js</span></div>
         </div>
         <div class="skill-card reveal">
           <h3>Cloud &amp; infrastructure</h3>
           <div class="skill-tags"><span>Azure</span><span>Nutanix</span><span>Terraform</span><span>Docker</span><span>Kubernetes</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3>DevOps &amp; delivery</h3>
+          <div class="skill-tags"><span>Azure DevOps CI/CD</span><span>GitHub Actions</span><span>Runbooks</span><span>Automation</span></div>
         </div>
         <div class="skill-card reveal">
           <h3>Computer vision</h3>
@@ -577,6 +674,8 @@
     <span>Casablanca, Morocco</span>
   </div>
 </footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
 
 <script>
 // ---- particle network canvas ----
@@ -718,7 +817,35 @@ function setupCarousel(carouselId, dotsId, prevId, nextId){
   });
 }
 setupCarousel('expCarousel','expDots','expPrev','expNext');
+setupCarousel('ragCarousel','ragDots','ragPrev','ragNext');
 setupCarousel('workCarousel','workDots','workPrev','workNext');
+
+// ---- back to top ----
+(function(){
+  const btn = document.getElementById('toTop');
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 700) btn.classList.add('visible');
+    else btn.classList.remove('visible');
+  });
+  btn.addEventListener('click', ()=> window.scrollTo({ top:0, behavior:'smooth' }));
+})();
+
+// ---- subtle card tilt on hover (desktop only) ----
+(function(){
+  if(window.matchMedia('(hover: none)').matches) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cards = document.querySelectorAll('.exp-card, .rag-card, .proj-card');
+  cards.forEach(card=>{
+    card.style.willChange = 'transform';
+    card.addEventListener('mousemove', (e)=>{
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left)/r.width - 0.5;
+      const y = (e.clientY - r.top)/r.height - 0.5;
+      card.style.transform = `perspective(700px) rotateX(${(-y*4).toFixed(2)}deg) rotateY(${(x*4).toFixed(2)}deg)`;
+    });
+    card.addEventListener('mouseleave', ()=>{ card.style.transform = ''; });
+  });
+})();
 </script>
 
 </body>
